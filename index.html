@@ -17,36 +17,36 @@
         position: relative;
     }
 
-    /* FIX FULLSCREEN — NO ZOOM */
+    /* FULLSCREEN IMAGE WITHOUT ZOOM */
     .panther-bg {
         position: fixed;
         top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
-        object-fit: contain; 
+        object-fit: contain;
         z-index: 1;
     }
 
-    /* HUGE + HEAVY + FASTER FOG */
+    /* HUGE, FULL COVER, HEAVY FOG */
     .fog {
         position: fixed;
-        top: -60vh;
-        left: -100vw;
-        width: 500vw;     
-        height: 350vh;    
+        top: 0;
+        left: 0;
+        width: 100vw;       /* EXACT PAGE WIDTH */
+        height: 100vh;      /* EXACT PAGE HEIGHT */
         background: url("assets/fog.png") no-repeat center;
         background-size: cover;
-        opacity: 0.55;           /* MUCH HEAVIER fog */
+        opacity: 0.70;      /* HEAVIER FOG */
         filter: blur(6px);
-        animation: fogMove 40s linear infinite;  /* FASTER */
+        animation: fogMove 45s linear infinite;
         z-index: 2;
         pointer-events: none;
     }
 
     @keyframes fogMove {
         0%   { transform: translateX(0); }
-        50%  { transform: translateX(-60vw); }
+        50%  { transform: translateX(-10vw); }
         100% { transform: translateX(0); }
     }
 
@@ -69,7 +69,21 @@
         100% { opacity: 0.1; }
     }
 
-    /* EMBLEM BUTTON — HIDDEN INITIALLY */
+    /* ENTER TEXT ABOVE EMBLEM */
+    #enterText {
+        position: fixed;
+        bottom: 155px;
+        right: 35px;
+        color: white;
+        font-family: Arial, sans-serif;
+        font-size: 20px;
+        display: none;
+        opacity: 0;
+        z-index: 6;
+        transition: opacity 2s ease;
+    }
+
+    /* EMBLEM BUTTON */
     #enterBtn {
         position: fixed;
         bottom: 25px;
@@ -78,7 +92,7 @@
         height: 120px;
         background: url("assets/1.png") no-repeat center;
         background-size: contain;
-        display: none;           
+        display: none;
         cursor: pointer;
         z-index: 6;
         opacity: 0;
@@ -90,25 +104,22 @@
 
 <body>
 
-    <!-- PANTHER IMAGE -->
     <img src="assets/Untitled design (2).png" class="panther-bg">
 
-    <!-- FOG -->
     <div class="fog"></div>
 
-    <!-- TAP TEXT -->
     <div class="tap-text" id="tapText">CLICK SCREEN</div>
 
-    <!-- EMBLEM BUTTON -->
+    <div id="enterText">CLICK TO ENTER</div>
     <div id="enterBtn" onclick="goHome()"></div>
 
-    <!-- THEME MUSIC -->
     <audio id="themeSong" src="assets/theme.mp3" preload="auto"></audio>
 
 <script>
 
     const audio = document.getElementById("themeSong");
     const tapText = document.getElementById("tapText");
+    const enterText = document.getElementById("enterText");
     const enterBtn = document.getElementById("enterBtn");
 
     let started = false;
@@ -117,25 +128,34 @@
         if (!started) {
             started = true;
 
+            // Start music
             audio.volume = 1.0;
-            audio.play().catch(err => {
-                console.log("Audio start blocked:", err);
-            });
+            audio.play().catch(err => console.log("Audio blocked:", err));
 
             tapText.style.display = "none";
 
-            /* SHOW EMBLEM AFTER 20 SECONDS */
+            /* SHOW EMBLEM + TEXT AFTER 20 SECONDS */
             setTimeout(() => {
                 enterBtn.style.display = "block";
+                enterText.style.display = "block";
+
                 setTimeout(() => {
-                    enterBtn.style.opacity = 1;   // fade in
+                    enterBtn.style.opacity = 1;
+                    enterText.style.opacity = 1;
                 }, 50);
+
             }, 20000);
 
             /* AUTO REDIRECT AFTER 60 SEC */
-            setTimeout(() => {
-                goHome();
-            }, 60000);
+            setTimeout(goHome, 60000);
+
+            /* AFTER SONG ENDS → WAIT 60s SILENCE → RESTART */
+            audio.addEventListener("ended", () => {
+                setTimeout(() => {
+                    audio.currentTime = 0;
+                    audio.play();
+                }, 60000);
+            });
         }
     });
 
