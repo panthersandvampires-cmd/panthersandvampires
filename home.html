@@ -1,227 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panthers & Vampires</title>
-<link rel="stylesheet" href="assets/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panthers & Vampires</title>
+    <link rel="stylesheet" href="assets/styles.css">
 
 <style>
+    /* NARROW DESCRIPTION SCROLL BOX */
+    .description-box {
+        width: 60%;
+        max-width: 600px;
+        margin: 20px auto;
+        max-height: 300px;
+        overflow-y: auto;
+        padding-right: 10px;
+        line-height: 1.6;
+    }
 
-/* ------------------------------------------
-   FULL BACKGROUND EMBLEM
--------------------------------------------*/
-body {
-    margin: 0;
-    padding: 0;
-    background: #000;
-    color: white;
-    font-family: Georgia, serif;
-    overflow-x: hidden;
-}
+    .description-box::-webkit-scrollbar {
+        width: 8px;
+    }
+    .description-box::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 5px;
+    }
 
-.bg-emblem {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: url("assets/1.png") center/contain no-repeat;
-    opacity: 0.09;      /* LIGHT so text stands out */
-    z-index: -1;
-}
-
-/* ------------------------------------------
-   TOP SCROLLING PROMO BANNER
--------------------------------------------*/
-.promo-banner {
-    width: 100%;
-    background: #4d0d0d;
-    padding: 8px 0;
-    overflow: hidden;
-    white-space: nowrap;
-    border-bottom: 2px solid #7a0000;
-    color: gold;
-    font-size: 18px;
-}
-
-.promo-banner span {
-    display: inline-block;
-    padding-left: 100%;
-    animation: scrollBanner 18s linear infinite;
-}
-
-@keyframes scrollBanner {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
-}
-
-/* ------------------------------------------
-   BOOK COVER
--------------------------------------------*/
-.book-cover {
-    width: 60%;
-    max-width: 380px;
-    display: block;
-    margin: 30px auto 10px auto;
-    border: 3px solid gold;
-    box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
-}
-
-/* ------------------------------------------
-   DESCRIPTION BOX (SCROLL)
--------------------------------------------*/
-.desc-box {
-    width: 70%;
-    max-width: 650px;
-    margin: 0 auto;
-    max-height: 270px;
-    overflow-y: scroll;
-    padding: 15px 20px;
-    background: rgba(0, 0, 0, 0.55);
-    border-left: 2px solid gold;
-    border-right: 2px solid gold;
-    line-height: 1.55;
-    box-shadow: inset 0 0 12px rgba(0,0,0,0.6);
-}
-
-/* Scrollbar styling */
-.desc-box::-webkit-scrollbar {
-    width: 8px;
-}
-.desc-box::-webkit-scrollbar-thumb {
-    background: gold;
-    border-radius: 10px;
-}
-
-/* ------------------------------------------
-   BUTTONS
--------------------------------------------*/
-.btn {
-    display: block;
-    width: 200px;
-    text-align: center;
-    margin: 20px auto;
-    padding: 12px;
-    background: gold;
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.btn:hover {
-    background: #e6b800;
-}
-
-/* ------------------------------------------
-   NAVIGATION AT BOTTOM
--------------------------------------------*/
-nav {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: rgba(0,0,0,0.7);
-    padding: 10px 0;
-}
-
-nav ul {
-    display: flex;
-    justify-content: space-evenly;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-nav a {
-    color: gold;
-    font-size: 18px;
-    text-decoration: none;
-    font-weight: bold;
-}
-nav a:hover {
-    color: #1b75d1;
-}
-
-/* ------------------------------------------
-   AUDIO ICON
--------------------------------------------*/
-.audio-toggle {
-    position: fixed;
-    top: 10px;
-    right: 15px;
-    font-size: 32px;
-    color: gold;
-    cursor: pointer;
-    z-index: 999;
-}
-
+    .book-cover {
+        display: block;
+        width: 50%;
+        max-width: 350px;
+        margin: 20px auto;
+        border-radius: 8px;
+    }
 </style>
+
 </head>
 
 <body>
 
-<!-- BACKGROUND EMBLEM -->
-<div class="bg-emblem"></div>
+    <!-- NAVIGATION -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="store.html">Store</a></li>
+            <li><a href="merch.html">Merch</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
 
-<!-- AUDIO -->
-<audio id="themeAudio" autoplay loop>
-    <source src="assets/theme.mp3" type="audio/mpeg">
-</audio>
+    <!-- HERO SECTION -->
+    <div class="hero">
+        <h1>PANTHERS & VAMPIRES</h1>
+    </div>
 
-<div class="audio-toggle" onclick="toggleAudio()">🔊</div>
+    <!-- BOOK COVER -->
+    <img src="assets/Panthers_and_Vampires_Cover_KDP.jpg" class="book-cover" alt="Book Cover">
 
-<!-- TOP PROMO BANNER -->
-<div class="promo-banner">
-    <span>🔥 Exclusive Deals • Signed Copies • Limited Merch Bundles • New Releases Every Season • Panthers & Vampires Universe Expanding •</span>
-</div>
+    <!-- NARROWER SCROLLING DESCRIPTION BOX -->
+    <div class="description-box">
+        <p><strong>Series description:</strong><br><br>
+        Salem, Massachusetts — built on blood, secrets, and the cries of the forgotten. Underneath its history of witch trials and slavery, a new kind of power was born. The descendants of the broken rose from the ashes — turning pain into power, and curses into crowns. Vampires. Witches. Panthers. Three bloodlines bound by survival, loyalty, and revenge.
+        <br><br>
+        King Pierce is a Panther — a shapeshifter whose gift only wakes when death calls his name before twenty-one. He’s from the concrete — raised by struggle, shaped by loyalty, and haunted by what he’s lost. Xzatalia, an original vampire, walks with centuries in her veins and heartbreak on her lips. Cursed by a man who once swore to love her, she’s been running from his shadow ever since — until she finds King.
+        <br><br>
+        Their connection is fire and war. Love and death. It’s that kind of love that don’t fade, even when blood hits the floor.
+        Deja — witch-born, carrying the pain of her ancestors from Salem’s first burnings — steps into a legacy that’s been calling her name since before she was born.
+        <br><br>
+        In this world, history breathes through blood.
+        Every curse has a heartbeat.
+        And every love story leaves a scar.
+        <br><br>
+        Panthers & Vampires blends the raw soul of the streets with the myth of the supernatural — a story about power, loyalty, and love that refuses to die.
+        Because even monsters remember where they come from.
+        </p>
+    </div>
 
-<!-- BOOK COVER -->
-<img src="assets/Panthers_and_Vampires_Cover_KDP.jpg" class="book-cover">
+    <!-- AUDIO PLAYER -->
+    <div class="audio-container">
+        <audio id="themeAudio" autoplay loop>
+            <source src="assets/theme.mp3" type="audio/mpeg">
+        </audio>
+        <button onclick="toggleAudio()">🔊</button>
+    </div>
 
-<!-- DESCRIPTION BOX -->
-<div class="desc-box">
-    <p><strong>Series Description:</strong><br><br>
-    Salem, Massachusetts — built on blood, secrets, and the cries of the forgotten. Underneath its history of witch trials and slavery, a new kind of power was born. The descendants of the broken rose from the ashes — turning pain into power, and curses into crowns. Vampires. Witches. Panthers. Three bloodlines bound by survival, loyalty, and revenge.<br><br>
-
-    King Pierce is a Panther — a shapeshifter whose gift only wakes when death calls his name before twenty-one. He’s from the concrete — raised by struggle, shaped by loyalty, and haunted by what he’s lost. Xzatalia, an original vampire, walks with centuries in her veins and heartbreak on her lips. Cursed by a man who once swore to love her, she’s been running from his shadow ever since — until she finds King.<br><br>
-
-    Their connection is fire and war. Love and death. It’s that kind of love that don’t fade, even when blood hits the floor.  
-    Deja — witch-born, carrying the pain of her ancestors from Salem’s first burnings — steps into a legacy that’s been calling her name since before she was born.<br><br>
-
-    In this world, history breathes through blood.  
-    Every curse has a heartbeat.  
-    And every love story leaves a scar.<br><br>
-
-    <em>Panthers & Vampires</em> blends the raw soul of the streets with the myth of the supernatural — a story about power, loyalty, and love that refuses to die. Because even monsters remember where they come from.
-    </p>
-</div>
-
-<!-- BUY BUTTON -->
-<a class="btn" href="#">Buy Book</a>
-
-<!-- NAVIGATION -->
-<nav>
-    <ul>
-        <li><a href="home.html">Home</a></li>
-        <li><a href="store.html">Store</a></li>
-        <li><a href="merch.html">Merch</a></li>
-        <li><a href="about.html">About</a></li>
-    </ul>
-</nav>
-
-<script>
-var audio = document.getElementById("themeAudio");
-
-function toggleAudio() {
-    if (audio.paused) {
-        audio.play();
-    } else {
-        audio.pause();
-    }
-}
-</script>
+    <script>
+        var audio = document.getElementById("themeAudio");
+        function toggleAudio() {
+            if (audio.paused) { audio.play(); }
+            else { audio.pause(); }
+        }
+    </script>
 
 </body>
 </html>
