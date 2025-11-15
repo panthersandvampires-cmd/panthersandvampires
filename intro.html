@@ -35,15 +35,15 @@
     left: 0;
     pointer-events: none;
 
-    /* LEFT EYE */
     background:
-        radial-gradient(circle at 46.5% 38.5%, rgba(0,170,255,0.9), transparent 12%),
+        /* LEFT EYE — lowered, centered perfectly */
+        radial-gradient(circle at 45.8% 33.2%, rgba(0,170,255,0.85), transparent 10%),
 
-        /* RIGHT EYE */
-        radial-gradient(circle at 56% 38.5%, rgba(0,170,255,0.9), transparent 12%);
+        /* RIGHT EYE — aligned with iris */
+        radial-gradient(circle at 56.5% 33.2%, rgba(0,170,255,0.85), transparent 10%);
 
     mix-blend-mode: screen;
-    filter: blur(6px);
+    filter: blur(4px);
     z-index: 3;
 }
 
