@@ -17,7 +17,7 @@
         position: relative;
     }
 
-    /* FULLSCREEN IMAGE WITHOUT ZOOM */
+    /* FULLSCREEN IMAGE (NO ZOOM) */
     .panther-bg {
         position: fixed;
         top: 0;
@@ -28,16 +28,18 @@
         z-index: 1;
     }
 
-    /* HUGE, FULL COVER, HEAVY FOG */
+    /* HUGE FULL-PAGE FOG — LESS TRANSPARENT */
     .fog {
         position: fixed;
         top: 0;
         left: 0;
-        width: 100vw;       /* EXACT PAGE WIDTH */
-        height: 100vh;      /* EXACT PAGE HEIGHT */
+        width: 100vw; 
+        height: 100vh;
         background: url("assets/fog.png") no-repeat center;
         background-size: cover;
-        opacity: 0.70;      /* HEAVIER FOG */
+
+        opacity: 0.92;     /* << HEAVIER / LESS TRANSPARENT FOG */
+
         filter: blur(6px);
         animation: fogMove 45s linear infinite;
         z-index: 2;
@@ -50,7 +52,7 @@
         100% { transform: translateX(0); }
     }
 
-    /* FLASHING TAP SCREEN TEXT */
+    /* FLASHING "CLICK SCREEN" */
     .tap-text {
         position: fixed;
         bottom: 40px;
@@ -69,7 +71,7 @@
         100% { opacity: 0.1; }
     }
 
-    /* ENTER TEXT ABOVE EMBLEM */
+    /* "CLICK TO ENTER" ABOVE EMBLEM */
     #enterText {
         position: fixed;
         bottom: 155px;
@@ -94,8 +96,8 @@
         background-size: contain;
         display: none;
         cursor: pointer;
-        z-index: 6;
         opacity: 0;
+        z-index: 6;
         transition: opacity 2s ease;
     }
 
@@ -104,15 +106,20 @@
 
 <body>
 
+    <!-- MAIN IMAGE -->
     <img src="assets/Untitled design (2).png" class="panther-bg">
 
+    <!-- FOG -->
     <div class="fog"></div>
 
+    <!-- FLASHING TAP TEXT -->
     <div class="tap-text" id="tapText">CLICK SCREEN</div>
 
+    <!-- ENTER TEXT + EMBLEM -->
     <div id="enterText">CLICK TO ENTER</div>
     <div id="enterBtn" onclick="goHome()"></div>
 
+    <!-- MUSIC -->
     <audio id="themeSong" src="assets/theme.mp3" preload="auto"></audio>
 
 <script>
@@ -128,13 +135,14 @@
         if (!started) {
             started = true;
 
-            // Start music
+            /* Play music on tap */
             audio.volume = 1.0;
             audio.play().catch(err => console.log("Audio blocked:", err));
 
+            /* Remove flashing text */
             tapText.style.display = "none";
 
-            /* SHOW EMBLEM + TEXT AFTER 20 SECONDS */
+            /* Fade in emblem + enter text after 20 sec */
             setTimeout(() => {
                 enterBtn.style.display = "block";
                 enterText.style.display = "block";
@@ -146,10 +154,10 @@
 
             }, 20000);
 
-            /* AUTO REDIRECT AFTER 60 SEC */
+            /* Auto redirect after 60 sec */
             setTimeout(goHome, 60000);
 
-            /* AFTER SONG ENDS → WAIT 60s SILENCE → RESTART */
+            /* Restart song after ending + 60 sec silence */
             audio.addEventListener("ended", () => {
                 setTimeout(() => {
                     audio.currentTime = 0;
@@ -166,4 +174,6 @@
 </script>
 
 </body>
+</html>
+
 </html>
