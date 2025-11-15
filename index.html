@@ -17,46 +17,46 @@
         position: relative;
     }
 
-    /* FULLSCREEN IMAGE WITHOUT ZOOM */
+    /* FIX FULLSCREEN — NO ZOOM */
     .panther-bg {
         position: fixed;
         top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
-        object-fit: contain;    /* FIXES FULLSCREEN ZOOM */
+        object-fit: contain; 
         z-index: 1;
     }
 
-    /* FULLSCREEN HEAVY FOG */
+    /* HUGE + HEAVY + FASTER FOG */
     .fog {
         position: fixed;
-        top: -40vh;
-        left: -80vw;
-        width: 400vw;       /* VERY BIG */
-        height: 300vh;      /* VERY TALL */
+        top: -60vh;
+        left: -100vw;
+        width: 500vw;     
+        height: 350vh;    
         background: url("assets/fog.png") no-repeat center;
         background-size: cover;
-        opacity: 0.35;      /* HEAVY FOG */
-        filter: blur(4px);
-        animation: fogMove 75s linear infinite;
+        opacity: 0.55;           /* MUCH HEAVIER fog */
+        filter: blur(6px);
+        animation: fogMove 40s linear infinite;  /* FASTER */
         z-index: 2;
         pointer-events: none;
     }
 
     @keyframes fogMove {
         0%   { transform: translateX(0); }
-        50%  { transform: translateX(-40vw); }
+        50%  { transform: translateX(-60vw); }
         100% { transform: translateX(0); }
     }
 
-    /* FLASHING CLICK SCREEN TEXT */
+    /* FLASHING TAP SCREEN TEXT */
     .tap-text {
         position: fixed;
         bottom: 40px;
         width: 100%;
         text-align: center;
-        font-size: 26px;
+        font-size: 30px;
         color: white;
         font-family: Arial, sans-serif;
         z-index: 5;
@@ -64,29 +64,25 @@
     }
 
     @keyframes flash {
-        0% { opacity: 0.2; }
+        0% { opacity: 0.1; }
         50% { opacity: 1; }
-        100% { opacity: 0.2; }
+        100% { opacity: 0.1; }
     }
 
-    /* EMBLEM BUTTON — hidden for now */
+    /* EMBLEM BUTTON — HIDDEN INITIALLY */
     #enterBtn {
         position: fixed;
         bottom: 25px;
         right: 25px;
-        width: 70px;            /* will update with emblem */
-        height: 70px;
-        background: rgba(255,255,255,0.1);
-        border-radius: 50%;
-        border: 1px solid rgba(255,255,255,0.3);
-        display: none;          /* appears after 15 sec */
+        width: 120px;
+        height: 120px;
+        background: url("assets/1.png") no-repeat center;
+        background-size: contain;
+        display: none;           
         cursor: pointer;
         z-index: 6;
-        transition: 0.3s;
-    }
-
-    #enterBtn:hover {
-        background: rgba(255,255,255,0.25);
+        opacity: 0;
+        transition: opacity 2s ease;
     }
 
 </style>
@@ -100,13 +96,13 @@
     <!-- FOG -->
     <div class="fog"></div>
 
-    <!-- CLICK TEXT -->
+    <!-- TAP TEXT -->
     <div class="tap-text" id="tapText">CLICK SCREEN</div>
 
-    <!-- EMBLEM (placeholder until you upload yours) -->
+    <!-- EMBLEM BUTTON -->
     <div id="enterBtn" onclick="goHome()"></div>
 
-    <!-- MUSIC -->
+    <!-- THEME MUSIC -->
     <audio id="themeSong" src="assets/theme.mp3" preload="auto"></audio>
 
 <script>
@@ -117,25 +113,26 @@
 
     let started = false;
 
-    // USER MUST CLICK TO START MUSIC
     document.body.addEventListener("click", () => {
         if (!started) {
             started = true;
 
             audio.volume = 1.0;
-
             audio.play().catch(err => {
-                console.log("Autoplay blocked:", err);
+                console.log("Audio start blocked:", err);
             });
 
             tapText.style.display = "none";
 
-            // SHOW EMBLEM AFTER 15 SEC
+            /* SHOW EMBLEM AFTER 20 SECONDS */
             setTimeout(() => {
                 enterBtn.style.display = "block";
-            }, 15000);
+                setTimeout(() => {
+                    enterBtn.style.opacity = 1;   // fade in
+                }, 50);
+            }, 20000);
 
-            // AUTO REDIRECT AFTER 60 SEC
+            /* AUTO REDIRECT AFTER 60 SEC */
             setTimeout(() => {
                 goHome();
             }, 60000);
