@@ -3,96 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panthers & Vampires</title>
+<title>Panthers & Vampires – Intro</title>
 
 <style>
-    body {
+    /* RESET */
+    html, body {
         margin: 0;
         padding: 0;
-        background: #000;
+        width: 100%;
+        height: 100%;
         overflow: hidden;
-        height: 100vh;
-        width: 100vw;
+        background: #000;
         cursor: pointer; /* click anywhere */
     }
 
-    /* Fullscreen Panther Image */
+    /* FULLSCREEN PANTHER IMAGE — NO ZOOM */
     .panther-bg {
         position: fixed;
-        top: 0;
-        left: 0;
+        top: 50%;
+        left: 50%;
         width: 100vw;
         height: 100vh;
-        object-fit: cover;
+        object-fit: contain;   /* << keeps FULL image visible */
+        transform: translate(-50%, -50%);
+        background-color: black;
         z-index: 1;
     }
 
-    /* FOG LAYER 1 - slow thick fog */
-    .fog1 {
+    /* UNIVERSAL FOG SETTINGS */
+    .fog1, .fog2, .fog3 {
         position: fixed;
         top: 0;
         left: 0;
-        width: 130%;
-        height: 130%;
-        background: url("https://raw.githubusercontent.com/ItsAdamAI/fog/main/fog1.png") repeat;
+        width: 130vw;
+        height: 130vh;
+        background: url("assets/fog.png") repeat;
         background-size: cover;
-        opacity: 0.25;
-        animation: fogLeft 45s linear infinite;
+        mix-blend-mode: screen;
+        pointer-events: none;
         z-index: 2;
-        pointer-events: none;
     }
 
-    /* FOG LAYER 2 - medium fog */
+    .fog1 {
+        opacity: 0.20;
+        animation: fogOne 55s linear infinite;
+    }
+
     .fog2 {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 140%;
-        height: 140%;
-        background: url("https://raw.githubusercontent.com/ItsAdamAI/fog/main/fog2.png") repeat;
-        background-size: cover;
-        opacity: 0.18;
-        animation: fogRight 60s linear infinite;
-        z-index: 3;
-        pointer-events: none;
+        opacity: 0.15;
+        animation: fogTwo 75s linear infinite;
     }
 
-    /* FOG LAYER 3 - fast thin fog */
     .fog3 {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 160%;
-        height: 160%;
-        background: url("https://raw.githubusercontent.com/ItsAdamAI/fog/main/fog3.png") repeat;
-        background-size: cover;
-        opacity: 0.12;
-        animation: fogLeftFast 25s linear infinite;
-        z-index: 4;
-        pointer-events: none;
+        opacity: 0.10;
+        animation: fogThree 95s linear infinite;
     }
 
-    @keyframes fogLeft {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-400px); }
+    /* ANIMATIONS */
+    @keyframes fogOne {
+        0% { transform: translateX(0) translateY(0) scale(1.1); }
+        50% { transform: translateX(-60px) translateY(25px) scale(1.1); }
+        100% { transform: translateX(0) translateY(0) scale(1.1); }
     }
 
-    @keyframes fogRight {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(400px); }
+    @keyframes fogTwo {
+        0% { transform: translateX(0) translateY(0) scale(1.15); }
+        50% { transform: translateX(80px) translateY(-35px) scale(1.15); }
+        100% { transform: translateX(0) translateY(0) scale(1.15); }
     }
 
-    @keyframes fogLeftFast {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-600px); }
+    @keyframes fogThree {
+        0% { transform: translateX(0) translateY(0) scale(1.2); }
+        50% { transform: translateX(-100px) translateY(40px) scale(1.2); }
+        100% { transform: translateX(0) translateY(0) scale(1.2); }
     }
-
 </style>
+
 </head>
 
 <body onclick="enterSite()">
 
-    <!-- Fullscreen Panther -->
+    <!-- Panther Image -->
     <img src="assets/28133ae1-13ec-41fa-a11a-ce66fbd5715d.png" class="panther-bg" alt="Panther">
 
     <!-- Fog Layers -->
@@ -101,9 +92,9 @@
     <div class="fog3"></div>
 
 <script>
-function enterSite() {
-    window.location.href = "home.html"; 
-}
+    function enterSite() {
+        window.location.href = "home.html";
+    }
 </script>
 
 </body>
