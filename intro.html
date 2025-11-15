@@ -1,110 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panthers & Vampires – Intro</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panthers & Vampires</title>
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #000;
-            overflow: hidden;
-            height: 100vh;
-            width: 100vw;
-        }
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #000;
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+        cursor: pointer; /* click anywhere */
+    }
 
-        /* Fullscreen panther image */
-        #intro-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-            cursor: pointer;
-            filter: brightness(0.9);
-        }
+    /* Fullscreen Panther Image */
+    .panther-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        z-index: 1;
+    }
 
-        /* Fog layer (optional, subtle) */
-        /* Fog Layer 1 – Slow background fog */
-.fog1 {
-    position: absolute;
-    width: 140%;
-    height: 140%;
-    top: -20%;
-    left: -20%;
-    pointer-events: none;
-    background: url("https://raw.githubusercontent.com/ItsAdamAI/fog/main/fog.png");
-    background-size: cover;
-    opacity: 0.12;
-    animation: fogMove1 55s linear infinite;
-}
+    /* FOG LAYER 1 - slow thick fog */
+    .fog1 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 130%;
+        height: 130%;
+        background: url("https://raw.githubusercontent.com/ItsAdamAI/fog/main/fog1.png") repeat;
+        background-size: cover;
+        opacity: 0.25;
+        animation: fogLeft 45s linear infinite;
+        z-index: 2;
+        pointer-events: none;
+    }
 
-/* Fog Layer 2 – Mid-depth fog */
-.fog2 {
-    position: absolute;
-    width: 130%;
-    height: 130%;
-    top: -15%;
-    left: -15%;
-    pointer-events: none;
-    background: url("https://raw.githubusercontent.com/ItsAdamAI/fog/main/fog2.png");
-    background-size: cover;
-    opacity: 0.20;
-    animation: fogMove2 40s linear infinite;
-}
+    /* FOG LAYER 2 - medium fog */
+    .fog2 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 140%;
+        height: 140%;
+        background: url("https://raw.githubusercontent.com/ItsAdamAI/fog/main/fog2.png") repeat;
+        background-size: cover;
+        opacity: 0.18;
+        animation: fogRight 60s linear infinite;
+        z-index: 3;
+        pointer-events: none;
+    }
 
-/* Fog Layer 3 – Foreground fast streaks */
-.fog3 {
-    position: absolute;
-    width: 150%;
-    height: 150%;
-    top: -25%;
-    left: -25%;
-    pointer-events: none;
-    background: url("https://raw.githubusercontent.com/ItsAdamAI/fog/main/fog3.png");
-    background-size: cover;
-    opacity: 0.10;
-    animation: fogMove3 25s linear infinite;
-}
+    /* FOG LAYER 3 - fast thin fog */
+    .fog3 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 160%;
+        height: 160%;
+        background: url("https://raw.githubusercontent.com/ItsAdamAI/fog/main/fog3.png") repeat;
+        background-size: cover;
+        opacity: 0.12;
+        animation: fogLeftFast 25s linear infinite;
+        z-index: 4;
+        pointer-events: none;
+    }
 
-/* Animations */
-@keyframes fogMove1 {
-    0% { transform: translateX(0px) scale(1.2); }
-    100% { transform: translateX(80px) scale(1.25); }
-}
+    @keyframes fogLeft {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-400px); }
+    }
 
-@keyframes fogMove2 {
-    0% { transform: translateX(0px) scale(1.2); }
-    100% { transform: translateX(-100px) scale(1.27); }
-}
+    @keyframes fogRight {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(400px); }
+    }
 
-@keyframes fogMove3 {
-    0% { transform: translateX(0px) scale(1.3); }
-    100% { transform: translateX(140px) scale(1.35); }
-}
+    @keyframes fogLeftFast {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-600px); }
+    }
 
-        }
-    </style>
+</style>
 </head>
 
 <body onclick="enterSite()">
 
-    <!-- Panther Image -->
-    <img id="intro-img" src="assets/28133ae1-13ec-41fa-a11a-ce66fbd5715d.png" alt="Panther">
+    <!-- Fullscreen Panther -->
+    <img src="assets/28133ae1-13ec-41fa-a11a-ce66fbd5715d.png" class="panther-bg" alt="Panther">
 
-    <!-- Fog -->
-   <div class="fog1"></div>
-<div class="fog2"></div>
-<div class="fog3"></div>
+    <!-- Fog Layers -->
+    <div class="fog1"></div>
+    <div class="fog2"></div>
+    <div class="fog3"></div>
 
-    <script>
-        function enterSite() {
-            window.location.href = "home.html";
-        }
-    </script>
+<script>
+function enterSite() {
+    window.location.href = "home.html"; 
+}
+</script>
 
 </body>
 </html>
