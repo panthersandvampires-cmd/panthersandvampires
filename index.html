@@ -1,1 +1,60 @@
-<html><body>Index placeholder</body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panthers & Vampires</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="store.html">Store</a></li>
+            <li><a href="merch.html">Merch</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="hero">
+        <h1>PANTHERS & VAMPIRES</h1>
+    </div>
+
+    <!-- PROMO SECTION -->
+    <div class="promo-box">
+        <h2>🔥 Book 1 Available Now</h2>
+        <p>Dive into the supernatural world of Panthers, Vampires, Witches, and War.</p>
+        <button class="btn">Buy Now</button>
+    </div>
+
+    <div class="promo-box">
+        <h2>🔥 Exclusive Merch Drops</h2>
+        <p>Hoodies • Shirts • Bundles • Limited Editions</p>
+        <button class="btn">Shop Merch</button>
+    </div>
+
+    <!-- AUDIO PLAYER -->
+    <div class="audio-container">
+        <audio id="themeAudio" autoplay loop>
+            <source src="assets/theme.mp3" type="audio/mpeg">
+        </audio>
+        <button onclick="toggleAudio()">🔊</button>
+    </div>
+
+    <script>
+        var audio = document.getElementById("themeAudio");
+        function toggleAudio() {
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+    </script>
+
+</body>
+</html>
