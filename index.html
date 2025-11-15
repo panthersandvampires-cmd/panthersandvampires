@@ -13,7 +13,7 @@
             overflow: hidden;
         }
 
-        /* Panther full background */
+        /* BACKGROUND IMAGE – FULL SCREEN */
         .panther-bg {
             position: fixed;
             top: 0;
@@ -24,80 +24,55 @@
             z-index: 1;
         }
 
-        /* Fog layers */
+        /* FOG – BOTTOM, LARGE, TRANSPARENT */
         .fog {
             position: fixed;
-            width: 200vw;
-            height: 200vh;
-            top: -50vh;
-            left: -50vw;
-            background: url("assets/fog.png") repeat;
-            background-size: 80%;
-            opacity: 0.22;
-            mix-blend-mode: screen;
-            pointer-events: none;
+            width: 200vw;      /* BIGGER */
+            height: 100vh;
+            bottom: -20vh;     /* PUSH FOG DOWN */
+            left: -50vw;       /* CENTER IT BETTER */
+
+            background: url("assets/fog.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            opacity: 0.15;     /* MORE SEE THROUGH */
             z-index: 3;
+
             animation: fogMove 45s linear infinite;
-        }
-
-        .fog:nth-child(2) {
-            opacity: 0.18;
-            animation-duration: 60s;
-        }
-
-        .fog:nth-child(3) {
-            opacity: 0.14;
-            animation-duration: 75s;
+            pointer-events: none;
         }
 
         @keyframes fogMove {
-            0% { transform: translateX(0) translateY(0) scale(1.1); }
-            50% { transform: translateX(120px) translateY(-40px) scale(1.12); }
-            100% { transform: translateX(0) translateY(0) scale(1.1); }
-        }
-
-        /* Enter hint (optional fade text) */
-        .enter-text {
-            position: fixed;
-            bottom: 50px;
-            width: 100%;
-            text-align: center;
-            color: white;
-            font-size: 22px;
-            font-family: Arial, sans-serif;
-            opacity: 0.7;
-            z-index: 5;
-            animation: glow 2.5s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-            0% { opacity: 0.6; }
-            50% { opacity: 1; }
-            100% { opacity: 0.6; }
+            0% { transform: translateX(0); }
+            50% { transform: translateX(50px); }
+            100% { transform: translateX(0); }
         }
     </style>
+
+    <!-- MUSIC -->
+    <audio id="theme" autoplay loop>
+        <source src="assets/theme.mp3" type="audio/mpeg">
+    </audio>
+
 </head>
+<body>
 
-<body onclick="enterSite()">
+    <!-- FULL BACKGROUND PANTHER -->
+    <img src="assets/28133ae1-13ec-41fa-a11a-ce66fbd5715d.png" class="panther-bg">
 
-    <!-- Panther image -->
-    <img src="assets/28133ae1-13ec-41fa-a11a-ce66fbd5715d.png" class="panther-bg" alt="Panther">
-
-    <!-- Fog layers -->
+    <!-- FOG -->
     <div class="fog"></div>
-    <div class="fog"></div>
-    <div class="fog"></div>
-
-    <!-- Enter Text -->
-    <div class="enter-text">Tap Anywhere to Enter</div>
-
-    <!-- Theme Song -->
-    <audio id="theme" src="assets/theme.mp3" autoplay loop></audio>
 
     <script>
-        function enterSite() {
+        // CLICK ANYWHERE TO ENTER
+        document.body.addEventListener("click", () => {
             window.location.href = "home.html";
-        }
+        });
+
+        // AUTO-REDIRECT AFTER 30 SECONDS
+        setTimeout(() => {
+            window.location.href = "home.html";
+        }, 30000);
     </script>
 
 </body>
