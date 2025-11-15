@@ -9,33 +9,36 @@
         body {
             margin: 0;
             padding: 0;
-            background: black;
+            background: #000;
             overflow: hidden;
+            position: relative;
+            height: 100vh;
+            width: 100vw;
         }
 
-        /* FULL SCREEN IMAGE WITHOUT ZOOM */
+        /* Panther image full screen WITHOUT zoom */
         .panther-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            object-fit: contain;     /* <-- THIS FIXES YOUR FULLSCREEN ZOOM ISSUE */
+            object-fit: contain;
             z-index: 1;
         }
 
-        /* Fog Layer */
+        /* Fog */
         .fog {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 200vw;
-            height: 50vh;
+            height: 60vh;
             background: url("assets/fog.png") no-repeat center;
             background-size: cover;
-            opacity: 0.18; /* more transparent */
+            opacity: 0.18;
             animation: fogMove 45s linear infinite;
-            z-index: 3;
+            z-index: 2;
             pointer-events: none;
         }
 
@@ -45,46 +48,99 @@
             100% { transform: translateX(0); }
         }
 
-        /* Invisible click area (full screen) */
-        #clickArea {
+        /* Flashing Click Screen text */
+        .tap-text {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            bottom: 40px;
+            width: 100%;
+            text-align: center;
+            font-size: 26px;
+            color: white;
+            font-family: Arial, sans-serif;
             z-index: 5;
+            animation: flash 1.3s infinite;
+        }
+
+        @keyframes flash {
+            0% { opacity: 0.2; }
+            50% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
+
+        /* Enter button (hidden at first) */
+        #enterBtn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            padding: 12px 28px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+            border-radius: 6px;
+            z-index: 7;
+            display: none;
+            transition: 0.3s;
+        }
+
+        #enterBtn:hover {
+            background: rgba(255,255,255,0.2);
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Full screen Panther -->
-    <img src="assets/28133ae1-13ec-41fa-a11a-ce66fbd5715d.png" class="panther-bg" alt="Panther">
+    <!-- Background Panther -->
+    <img src="assets/28133ae1-13ec-41fa-a11a-ce66fbd5715d.png" class="panther-bg">
 
-    <!-- Fog at bottom -->
+    <!-- Fog -->
     <div class="fog"></div>
 
-    <!-- FULL SCREEN CLICK AREA -->
-    <div id="clickArea"></div>
+    <!-- Flashing Text -->
+    <div class="tap-text" id="tapText">CLICK SCREEN</div>
 
-    <!-- Audio -->
-    <audio id="themeSong" src="assets/theme.mp3"></audio>
+    <!-- Hidden Enter Button -->
+    <div id="enterBtn" onclick="goHome()">ENTER</div>
+
+    <!-- Music -->
+    <audio id="themeSong" src="assets/theme.mp3" preload="auto"></audio>
 
     <script>
         const audio = document.getElementById("themeSong");
-        const clickArea = document.getElementById("clickArea");
+        const tapText = document.getElementById("tapText");
+        const enterBtn = document.getElementById("enterBtn");
 
-        function enterSite() {
-            audio.play().catch(()=>{});   // start music
-            window.location.href = "home.html";  // go to homepage
+        let hasStarted = false;
+
+        // USER MUST CLICK TO START AUDIO
+        document.body.addEventListener("click", () => {
+            if (!hasStarted) {
+                hasStarted = true;
+
+                // Start music
+                audio.play().catch(()=>{});
+
+                // Remove "CLICK SCREEN"
+                tapText.style.display = "none";
+
+                // Show ENTER after 15 seconds
+                setTimeout(() => {
+                    enterBtn.style.display = "block";
+                }, 15000);
+
+                // Auto redirect after 60 seconds
+                setTimeout(() => {
+                    goHome();
+                }, 60000);
+            }
+        });
+
+        function goHome() {
+            window.location.href = "home.html";
         }
-
-        // Click anywhere to enter + play music
-        clickArea.addEventListener("click", enterSite);
-
-        // Auto redirect after 60 seconds
-        setTimeout(enterSite, 30000);
     </script>
 
 </body>
