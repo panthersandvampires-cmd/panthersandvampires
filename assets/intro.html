@@ -4,67 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enter — Panthers & Vampires</title>
-    <link rel="stylesheet" href="assets/styles.css">
 
     <style>
-        body {
-            background-color: #000;
-            overflow: hidden;
+        /* BASIC RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
+        body {
+            background: #000;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            font-family: "Times New Roman", serif;
+        }
+
+        /* FULLSCREEN CONTAINER */
         .intro-container {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
             height: 100%;
-            background-color: #000;
+            width: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            animation: fadeIn 2s ease-in;
+            animation: fadeIn 2s ease-in forwards;
         }
 
+        /* PANTHER IMAGE */
         .panther-face {
-            width: 60%;
-            max-width: 500px;
-            animation: fadeInImage 4s ease-in-out;
+            width: 70%;
+            max-width: 600px;
+            opacity: 0;
+            animation: pantherFade 3.5s ease-in forwards;
+            filter: drop-shadow(0 0 40px #0044ff);
         }
 
+        /* ENTER BUTTON */
         .enter-btn {
-            margin-top: 40px;
-            padding: 12px 28px;
+            margin-top: 45px;
+            padding: 12px 32px;
+            border: 2px solid red;
             background: transparent;
             color: white;
-            font-size: 22px;
-            border: 2px solid red;
+            font-size: 24px;
+            letter-spacing: 2px;
             cursor: pointer;
+            opacity: 0;
+            animation: fadeButton 5s ease-in forwards;
             transition: 0.3s;
         }
 
         .enter-btn:hover {
             background: red;
+            box-shadow: 0 0 25px red;
         }
 
+        /* SMOKE EFFECT */
+        .smoke {
+            position: absolute;
+            width: 160%;
+            height: 160%;
+            top: -30%;
+            left: -30%;
+            background: url("https://i.imgur.com/3ZQ3YQz.png");
+            opacity: 0.2;
+            mix-blend-mode: screen;
+            animation: smokeMove 20s linear infinite;
+        }
+
+        /* ANIMATIONS */
         @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        @keyframes fadeInImage {
-            0% {opacity: 0;}
-            100% {opacity: 1;}
+        @keyframes pantherFade {
+            0% { opacity: 0; transform: scale(1.15); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes fadeButton {
+            0% { opacity: 0; }
+            60% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes smokeMove {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(-300px) translateY(-150px); }
         }
     </style>
 </head>
 
 <body>
 
+    <!-- SMOKE OVERLAY -->
+    <div class="smoke"></div>
+
+    <!-- MAIN INTRO -->
     <div class="intro-container">
         <img src="assets/panther.png" class="panther-face" alt="Panther Eyes">
         <button class="enter-btn" onclick="goHome()">ENTER</button>
     </div>
+
+    <!-- AUTO-PLAY AUDIO -->
+    <audio id="themeAudio" autoplay loop>
+        <source src="assets/theme.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
         function goHome() {
