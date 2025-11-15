@@ -1,65 +1,85 @@
-/* GENERAL PAGE RESET */
-body {
-    margin: 0;
-    padding: 0;
-    background: #000;
-    overflow: hidden;
-    height: 100vh;
-    width: 100vw;
-}
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #000;
+        overflow: hidden;
+        position: relative;
+        height: 100vh;
+        width: 100vw;
+    }
 
-/* FULLSCREEN PANTHER */
-.panther-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;   /* full picture always fits screen */
-    z-index: 1;
-}
+    /* FULL SCREEN PANTHER WITHOUT ZOOM */
+    .panther-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: contain;   /* ensures NO zoom */
+        z-index: 1;
+    }
 
-/* CLICK-ANYWHERE SCREEN */
-.enter-screen {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    cursor: pointer;
-    z-index: 10;
-}
+    /* FOG – FULL PAGE, HUGE, DRIFTING, SOFT */
+    .fog {
+        position: fixed;
+        top: -20vh;          /* move fog up for full coverage */
+        left: -50vw;         /* widen on both sides */
+        width: 300vw;        /* SUPER wide fog */
+        height: 200vh;       /* SUPER tall fog */
+        background: url("assets/fog.png") no-repeat center;
+        background-size: cover;
+        opacity: 0.16;       /* soft transparent fog */
+        animation: fogMove 55s linear infinite;
+        z-index: 2;
+        pointer-events: none;
+    }
 
-/* FOG LAYERS */
-.fog {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200vw;
-    height: 100vh;
-    background: url("fog.png");   /* GitHub automatically resolves assets/styles.css path */
-    background-size: cover;
-    opacity: 0.25;
-    pointer-events: none;
-    z-index: 3;
-    filter: blur(3px);
-}
+    @keyframes fogMove {
+        0% { transform: translateX(0); }
+        50% { transform: translateX(-30vw); }
+        100% { transform: translateX(0); }
+    }
 
-.fog1 { animation: fogMove1 45s linear infinite; }
-.fog2 { animation: fogMove2 60s linear infinite; opacity: 0.4; }
-.fog3 { animation: fogMove3 70s linear infinite; opacity: 0.22; }
+    /* FLASHING CLICK SCREEN TEXT */
+    .tap-text {
+        position: fixed;
+        bottom: 40px;
+        width: 100%;
+        text-align: center;
+        font-size: 26px;
+        color: white;
+        font-family: Arial, sans-serif;
+        z-index: 5;
+        animation: flash 1.3s infinite;
+    }
 
-@keyframes fogMove1 {
-    0%   { transform: translateX(-20vw); }
-    100% { transform: translateX(20vw); }
-}
+    @keyframes flash {
+        0% { opacity: 0.2; }
+        50% { opacity: 1; }
+        100% { opacity: 0.2; }
+    }
 
-@keyframes fogMove2 {
-    0%   { transform: translateX(20vw); }
-    100% { transform: translateX(-20vw); }
-}
+    /* EMBLEM ENTER BUTTON – WILL BE UPDATED ONCE YOU SEND EMBLEM */
+    #enterBtn {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        padding: 12px 28px;
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.3);
+        color: white;
+        font-size: 18px;
+        font-family: Arial, sans-serif;
+        cursor: pointer;
+        border-radius: 6px;
+        z-index: 7;
+        display: none;       /* stays hidden until 15 sec */
+        transition: 0.3s;
+    }
 
-@keyframes fogMove3 {
-    0%   { transform: translateX(-10vw); }
-    100% { transform: translateX(10vw); }
-}
+    #enterBtn:hover {
+        background: rgba(255,255,255,0.2);
+    }
+</style>
+
