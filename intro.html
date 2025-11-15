@@ -11,43 +11,23 @@
             padding: 0;
             background: #000;
             overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             height: 100vh;
+            width: 100vw;
         }
 
         /* Fullscreen panther image */
-        .panther-face {
-            position: relative;
+        #intro-img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100vw;
             height: 100vh;
             object-fit: cover;
-            z-index: 1;
+            cursor: pointer;
+            filter: brightness(0.9);
         }
 
-        /* REAL EYE GLOW — CLEAN, TIGHT, ONLY ON EYES */
-.eye-glow {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-
-    background:
-
-        /* LEFT EYE — move DOWN slightly + move RIGHT slightly (inward) + shrink */
-        radial-gradient(circle at 36.5% 37.2%, rgba(0,170,255,0.90), transparent 3%),
-
-        /* RIGHT EYE — move DOWN slightly + move LEFT slightly (inward) + shrink */
-        radial-gradient(circle at 50.0% 36.8%, rgba(0,170,255,0.90), transparent 3%);
-
-    mix-blend-mode: screen;
-    filter: blur(1.8px);
-    z-index: 3;
-
-        /* Fog layer */
+        /* Fog layer (optional, subtle) */
         .smoke {
             position: absolute;
             width: 100%;
@@ -57,52 +37,26 @@
             pointer-events: none;
             background: url("https://raw.githubusercontent.com/ItsAdamAI/fog/main/fog.png");
             background-size: cover;
-            opacity: 0.2;
+            opacity: 0.15;
             mix-blend-mode: lighten;
             animation: smokeMove 35s linear infinite;
-            z-index: 2;
         }
 
         @keyframes smokeMove {
             0% { transform: scale(1.2) translateX(0px); }
-            50% { transform: scale(1.22) translateX(25px); }
+            50% { transform: scale(1.25) translateX(25px); }
             100% { transform: scale(1.2) translateX(0px); }
-        }
-
-        /* ENTER BTN */
-        .enter-btn {
-            position: absolute;
-            bottom: 40px;
-            z-index: 4;
-            padding: 15px 40px;
-            font-size: 24px;
-            border: 2px solid red;
-            color: white;
-            background: rgba(0,0,0,0.5);
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .enter-btn:hover {
-            background: red;
-            color: black;
         }
     </style>
 </head>
 
-<body>
+<body onclick="enterSite()">
 
-    <!-- Panther image fullscreen -->
-    <img src="assets/28133ae1-13ec-41fa-a11a-ce66fbd5715d.png" class="panther-face" alt="Panther">
+    <!-- Panther Image -->
+    <img id="intro-img" src="assets/28133ae1-13ec-41fa-a11a-ce66fbd5715d.png" alt="Panther">
 
-    <!-- Eye glow layer -->
-    <div class="eye-glow"></div>
-
-    <!-- Fog/smoke layer -->
+    <!-- Fog -->
     <div class="smoke"></div>
-
-    <!-- Enter button -->
-    <button class="enter-btn" onclick="enterSite()">ENTER</button>
 
     <script>
         function enterSite() {
