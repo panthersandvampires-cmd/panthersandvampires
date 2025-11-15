@@ -5,450 +5,250 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Panthers & Vampires – Home</title>
 
-  <!-- you can keep this if other pages use it -->
-  <link rel="stylesheet" href="assets/styles.css">
-
   <style>
     :root {
       --pv-gold: #d6a44a;
-      --pv-gold-soft: #b88a3a;
-      --pv-red: #e01b1b;
-      --pv-dark: #000000;
-      --pv-text: #f5f5f5;
+      --pv-blue: #3aa0d8;
+      --pv-red: #b40e0e;
+      --pv-dark: #000;
+      --pv-text: #f2f2f2;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       padding: 0;
-      background: var(--pv-dark);
+      background: #000;
       color: var(--pv-text);
-      font-family: "Georgia", "Times New Roman", serif;
-      min-height: 100vh;
-      position: relative;
+      font-family: Georgia, serif;
       overflow-x: hidden;
     }
 
-    /* FADED EMBLEM BACKGROUND */
+    /* 🔥 FIXED EMBLEM BACKGROUND */
     .emblem-bg {
       position: fixed;
       inset: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      pointer-events: none;
       z-index: 0;
-      opacity: 0.16; /* strength of emblem */
+      opacity: 0.20; /* see-through but visible */
+      background: url("assets/1.png") center/contain no-repeat;
+      pointer-events: none;
     }
 
-    .emblem-bg img {
-      max-width: 70vw;
-      max-height: 90vh;
-      width: auto;
-      height: auto;
-      filter: drop-shadow(0 0 30px #000);
-    }
-
-    /* OVERLAY TO KEEP TEXT READABLE */
-    .dark-overlay {
+    /* DARK FADE OVERLAY SO TEXT ALWAYS POPS */
+    .overlay {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(0,0,0,0.2), rgba(0,0,0,0.94));
+      background: linear-gradient(to bottom,
+        rgba(0,0,0,0.7),
+        rgba(0,0,0,0.90)
+      );
       z-index: 1;
       pointer-events: none;
     }
 
-    /* TOP BAR: PROMO SCROLLER + AUDIO BTN */
-    header {
-      position: relative;
-      z-index: 2;
-    }
-
-    .top-bar {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      background: rgba(0, 0, 0, 0.92);
-      backdrop-filter: blur(6px);
-    }
-
-    /* promo ticker */
-    .promo-ticker {
-      flex: 1;
+    /* 🔥 TOP PROMO TICKER */
+    .promo-bar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.9);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      padding: 10px 0;
       overflow: hidden;
-      white-space: nowrap;
-      font-size: 0.9rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--pv-gold-soft);
+      z-index: 5;
     }
 
-    .ticker-track {
+    .promo-track {
+      white-space: nowrap;
       display: inline-block;
       padding-left: 100%;
-      animation: ticker 24s linear infinite;
-    }
-
-    .ticker-item {
-      margin-right: 4rem;
+      animation: scroll 18s linear infinite;
       color: var(--pv-gold);
-    }
-
-    @keyframes ticker {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
-
-    /* audio control */
-    .audio-control {
-      margin-left: 16px;
-    }
-
-    #audioToggle {
-      background: transparent;
-      border: 1px solid var(--pv-gold-soft);
-      color: var(--pv-gold);
-      border-radius: 20px;
-      padding: 6px 14px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      text-transform: uppercase;
+      font-size: 0.9rem;
       letter-spacing: 0.12em;
     }
 
-    #audioToggle:hover {
-      background: rgba(214,164,74,0.15);
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
     }
 
     /* MAIN CONTENT */
     main {
       position: relative;
-      z-index: 2;
-      padding: 40px 16px 60px;
-      max-width: 1100px;
+      z-index: 3;
+      padding-top: 80px; /* room for promo bar */
+      padding-bottom: 100px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
-    .series-tag {
-      color: var(--pv-red);
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-size: 0.9rem;
+    /* TITLE SECTION */
+    .title-block {
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 40px;
     }
 
-    .hero-title {
-      text-align: center;
-      font-size: 2.6rem;
-      letter-spacing: 0.16em;
+    .title-block h1 {
+      font-size: 3.2rem;
       margin: 0;
       color: var(--pv-gold);
       text-transform: uppercase;
+      letter-spacing: 0.14em;
+      text-shadow: 0 0 12px #000;
     }
 
-    .hero-subtitle {
+    .title-block h2 {
+      margin: 10px 0 0;
+      font-size: 1.8rem;
+      color: var(--pv-blue);
+      font-style: italic;
+      text-shadow: 0 0 12px #000;
+    }
+
+    /* BOOK COVER */
+    .book-cover {
+      width: 70%;
+      margin: 0 auto 30px;
+      display: block;
+      border-radius: 10px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.9);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    /* DESCRIPTION */
+    .description {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      padding: 0 15px;
+      text-shadow: 0 0 10px #000;
+    }
+
+    .description p { margin-bottom: 20px; }
+
+    /* BUTTONS */
+    .buttons {
+      margin-top: 28px;
       text-align: center;
-      margin: 8px 0 24px;
-      font-size: 1.05rem;
-      color: #dddddd;
-    }
-
-    .hero-card {
-      background: rgba(0,0,0,0.82);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 18px;
-      padding: 24px 18px 30px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-    }
-
-    .hero-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-cover {
-      flex: 0 0 220px;
-      max-width: 260px;
-    }
-
-    .hero-cover img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 18px 35px rgba(0,0,0,0.9);
-      border: 1px solid rgba(214,164,74,0.5);
-    }
-
-    .hero-copy {
-      flex: 1 1 260px;
-      min-width: 260px;
-    }
-
-    .hero-copy h2 {
-      margin: 0 0 6px;
-      color: var(--pv-red);
-      font-size: 1.2rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-    }
-
-    .hero-copy p {
-      margin: 6px 0 14px;
-      font-size: 0.98rem;
-      line-height: 1.65;
-      color: #e5e5e5;
-    }
-
-    .hero-copy small {
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
-    }
-
-    .hero-actions {
-      margin-top: 16px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
     }
 
     .btn {
-      border-radius: 999px;
-      padding: 10px 22px;
-      font-size: 0.9rem;
+      display: inline-block;
+      margin: 10px 12px;
+      padding: 12px 26px;
+      border-radius: 50px;
+      font-size: 1rem;
       text-transform: uppercase;
+      text-decoration: none;
       letter-spacing: 0.14em;
       cursor: pointer;
-      border: 1px solid transparent;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      white-space: nowrap;
+      transition: 0.3s;
+      border: 1px solid var(--pv-gold);
+      color: var(--pv-gold);
+      background: rgba(0,0,0,0.6);
     }
 
-    .btn-primary {
+    .btn:hover {
       background: var(--pv-gold);
-      color: #1a1107;
-      border-color: var(--pv-gold);
+      color: #000;
     }
 
-    .btn-primary:hover {
-      background: #f3c868;
-    }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--pv-gold);
-      border-color: var(--pv-gold-soft);
-    }
-
-    .btn-ghost:hover {
-      background: rgba(214,164,74,0.15);
-    }
-
-    /* NAV TABS */
-    .tab-nav {
-      margin-top: 32px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-    }
-
-    .tab-nav a {
-      min-width: 110px;
+    /* NAVIGATION AT BOTTOM */
+    .footer-nav {
+      margin-top: 60px;
       text-align: center;
-      padding: 10px 18px;
-      text-decoration: none;
-      text-transform: uppercase;
-      font-size: 0.85rem;
-      letter-spacing: 0.14em;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.15);
-      color: #f5f5f5;
-      background: rgba(0,0,0,0.7);
     }
 
-    .tab-nav a:hover {
-      border-color: var(--pv-gold);
+    .footer-nav a {
+      color: var(--pv-text);
+      margin: 0 12px;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      transition: 0.3s;
+    }
+
+    .footer-nav a:hover {
       color: var(--pv-gold);
     }
 
-    .tab-nav a.active {
-      background: var(--pv-red);
-      border-color: var(--pv-red);
-    }
-
-    /* MOBILE */
-    @media (max-width: 768px) {
-      main {
-        padding: 28px 12px 40px;
-      }
-
-      .hero-title {
-        font-size: 1.9rem;
-        letter-spacing: 0.14em;
-      }
-
-      .hero-card {
-        padding: 18px 14px 24px;
-      }
-
-      .top-bar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-      }
-
-      .audio-control {
-        align-self: flex-end;
-      }
-    }
+    /* AUDIO AUTO START */
+    audio { display: none; }
   </style>
 </head>
 
 <body>
 
-  <!-- FADED EMBLEM BACKGROUND -->
-  <div class="emblem-bg">
-    <img src="assets/1.png" alt="Panthers & Vampires Emblem">
-  </div>
-  <div class="dark-overlay"></div>
+  <!-- BACKGROUND -->
+  <div class="emblem-bg"></div>
+  <div class="overlay"></div>
 
-  <!-- HEADER: PROMO SCROLLER + AUDIO -->
-  <header>
-    <div class="top-bar">
-      <div class="promo-ticker">
-        <div class="ticker-track">
-          <span class="ticker-item">Launch Promo: Signed author copies of <em>Panthers &amp; Vampires: Blue Moon</em>.</span>
-          <span class="ticker-item">Bundle Deals: Book + Hoodie + Exclusive Bookmark.</span>
-          <span class="ticker-item">Limited Drop: First-edition copies before Book 2: Brian's Revenge arrives.</span>
-          <span class="ticker-item">Follow for updates: New chapters, merch drops, and events.</span>
-        </div>
-      </div>
-
-      <div class="audio-control">
-        <button id="audioToggle">
-          <span id="audioIcon">🔊</span>
-          <span id="audioLabel">On</span>
-        </button>
-      </div>
+  <!-- TOP PROMO -->
+  <div class="promo-bar">
+    <div class="promo-track">
+      🔥 Exclusive Launch Deals • Signed Author Copies • Book + Hoodie Bundles • Limited Merch Drops • Book 2: Brian’s Revenge Coming Soon • Follow Panthers & Vampires for Updates 🔥
     </div>
-  </header>
+  </div>
 
-  <!-- MAIN CONTENT -->
-  <main>
-    <div class="series-tag">Panthers &amp; Vampires • Book I</div>
-    <h1 class="hero-title">Blue Moon</h1>
-    <p class="hero-subtitle">
-      A supernatural war born in Salem, raised in the streets, and written in blood.
-    </p>
-
-    <section class="hero-card">
-      <div class="hero-grid">
-        <!-- If you have the full cover saved in assets, update the src below -->
-        <div class="hero-cover">
-          <img src="assets/1.png" alt="Panthers & Vampires: Blue Moon Cover">
-        </div>
-
-        <div class="hero-copy">
-          <h2>Book 1 Available Now</h2>
-          <p>
-            Step into a world where Panthers, Vampires, and witches move through the same streets you do.
-            Bloodlines, loyalty, and survival collide as ancient magic crashes into modern-day war.
-          </p>
-          <p>
-            Perfect for readers who love dark urban fantasy, brutal honesty, and characters that feel like
-            family — even when they’re monsters.
-          </p>
-          <small>Exclusive launch deals available for a limited time.</small>
-
-          <div class="hero-actions">
-            <a href="store.html" class="btn btn-primary">Buy the Book</a>
-            <a href="merch.html" class="btn btn-ghost">Bundles &amp; Merch</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- NAV TABS -->
-    <nav class="tab-nav">
-      <a href="home.html" class="active">Home</a>
-      <a href="store.html">Store</a>
-      <a href="merch.html">Merch</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </main>
-
-  <!-- THEME MUSIC -->
-  <audio id="themeAudio" loop>
+  <!-- MUSIC -->
+  <audio id="themeAudio" autoplay loop>
     <source src="assets/theme.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-    const audio = document.getElementById("themeAudio");
-    const toggle = document.getElementById("audioToggle");
-    const icon = document.getElementById("audioIcon");
-    const label = document.getElementById("audioLabel");
-
-    let audioOn = false;
-
-    // try to autoplay quietly (some browsers will block, it's fine)
+    // Force audio to play (browser might block until user taps)
     window.addEventListener("load", () => {
+      const audio = document.getElementById("themeAudio");
       audio.volume = 0.9;
-      audio.play().then(() => {
-        audioOn = true;
-        icon.textContent = "🔊";
-        label.textContent = "On";
-      }).catch(() => {
-        // autoplay blocked, wait for user
-        audioOn = false;
-        icon.textContent = "🔇";
-        label.textContent = "Off";
+      audio.play().catch(() => {
+        document.body.addEventListener("click", () => {
+          audio.play();
+        }, { once: true });
       });
     });
-
-    // toggle button
-    toggle.addEventListener("click", () => {
-      if (audio.paused) {
-        audio.play().catch(err => console.log("Play blocked:", err));
-        audioOn = true;
-        icon.textContent = "🔊";
-        label.textContent = "On";
-      } else {
-        audio.pause();
-        audioOn = false;
-        icon.textContent = "🔇";
-        label.textContent = "Off";
-      }
-    });
-
-    // as a backup, any click on the page tries to start audio once
-    document.body.addEventListener("click", () => {
-      if (!audioOn) {
-        audio.play().then(() => {
-          audioOn = true;
-          icon.textContent = "🔊";
-          label.textContent = "On";
-        }).catch(() => {});
-      }
-    }, { once: true });
   </script>
+
+  <!-- MAIN CONTENT -->
+  <main>
+
+    <div class="title-block">
+      <h1>PANTHERS & VAMPIRES</h1>
+      <h2>Blue Moon</h2>
+    </div>
+
+    <!-- BOOK COVER -->
+    <img src="assets/Panthers_and_Vampires_Cover_KDP.jpg" class="book-cover" alt="Book Cover">
+
+    <!-- DESCRIPTION -->
+    <div class="description">
+      <p><strong>Series description:</strong><br>
+      Salem, Massachusetts — built on blood, secrets, and the cries of the forgotten. Underneath its history of witch trials and slavery, a new kind of power was born. The descendants of the broken rose from the ashes — turning pain into power, and curses into crowns. Vampires. Witches. Panthers. Three bloodlines bound by survival, loyalty, and revenge.</p>
+
+      <p>King Pierce is a Panther — a shapeshifter whose gift only wakes when death calls his name before twenty-one. He’s from the concrete — raised by struggle, shaped by loyalty, and haunted by what he’s lost. Xzatalia, an original vampire, walks with centuries in her veins and heartbreak on her lips. Cursed by a man who once swore to love her, she’s been running from his shadow ever since — until she finds King.</p>
+
+      <p>Their connection is fire and war. Love and death. It’s that kind of love that don’t fade, even when blood hits the floor.</p>
+
+      <p>Deja — witch-born, carrying the pain of her ancestors from Salem’s first burnings — steps into...</p>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="buttons">
+      <a href="store.html" class="btn">Buy The Book</a>
+      <a href="merch.html" class="btn">Bundles & Merch Deals</a>
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <div class="footer-nav">
+      <a href="home.html">Home</a>
+      <a href="store.html">Store</a>
+      <a href="merch.html">Merch</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+  </main>
 
 </body>
 </html>
