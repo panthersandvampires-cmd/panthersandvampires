@@ -1,0 +1,180 @@
+/* GLOBAL RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    color: #eee;
+    font-family: "Times New Roman", serif;
+    line-height: 1.6;
+}
+
+/* NAVIGATION */
+nav {
+    width: 100%;
+    background: #0a0a0a;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid #222;
+    z-index: 999;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    list-style: none;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #ff0000;
+}
+
+/* HOME PAGE PROMO BANNER */
+.hero {
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(to bottom, rgba(255,0,0,0.25), rgba(0,0,0,0.9));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 48px;
+    color: #fff;
+    text-shadow: 0 0 20px red;
+}
+
+.promo-box {
+    margin: 40px auto;
+    width: 80%;
+    border: 1px solid #444;
+    padding: 30px;
+    text-align: center;
+    background: #111;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.promo-box:hover {
+    border-color: red;
+    box-shadow: 0 0 15px red;
+}
+
+.promo-box h2 {
+    color: #ff3333;
+    font-size: 28px;
+}
+
+.btn {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #cc0000;
+}
+
+/* MUSIC PLAYER */
+.audio-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #111;
+    padding: 15px;
+    border-radius: 50%;
+    border: 1px solid #333;
+    box-shadow: 0 0 10px black;
+}
+
+.audio-container button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* MERCH GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+    width: 90%;
+    margin: 40px auto;
+}
+
+.card {
+    background: #111;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+    border: 1px solid #333;
+    transition: 0.3s;
+}
+
+.card:hover {
+    border-color: red;
+    box-shadow: 0 0 15px red;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.card h3 {
+    color: #eee;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.card p {
+    color: #aaa;
+    font-size: 14px;
+}
+
+/* PAGE TITLES */
+.page-title {
+    text-align: center;
+    margin: 40px 0 10px;
+    font-size: 40px;
+    color: #ff3333;
+    text-shadow: 0 0 10px red;
+}
+
+/* ABOUT PAGE */
+.about-box {
+    width: 80%;
+    margin: 40px auto;
+    padding: 25px;
+    line-height: 1.7;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 6px;
+}
+
+.about-box h2 {
+    color: red;
+    margin-bottom: 10px;
+}
