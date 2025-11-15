@@ -64,11 +64,18 @@
 
     /* BOOK COVER */
     .book-cover {
-        width: 45%;
-        max-width: 350px;
-        border-radius: 10px;
-        margin-bottom: 25px;
-        display: block;
+    width: 45%;
+    max-width: 350px;
+    border-radius: 10px;
+
+    /* 🔥 SOFT GOLD GLOW OUTLINE */
+    box-shadow:
+        0 0 12px rgba(255, 215, 0, 0.4),
+        0 0 22px rgba(255, 215, 0, 0.25),
+        0 0 35px rgba(255, 215, 0, 0.15);
+
+    margin-bottom: 25px;
+    display: block;
     }
 
     /* DESCRIPTION BOX — MORE NARROW JUST LIKE YOU ASKED */
@@ -142,15 +149,17 @@
 </audio>
 
 <script>
-    const audio = document.getElementById("themeAudio");
+      const audio = document.getElementById("themeAudio");
     audio.volume = 1.0;
 
-    // Required for iPhone autoplay fallback
-    audio.play().catch(() => {
-        document.body.addEventListener("click", () => {
-            audio.play();
-        }, { once: true });
-    });
+    // Force autoplay + fallback for mobile
+    function startMusic() {
+        audio.play().catch(() => {});
+    }
+
+    startMusic();
+
+    document.addEventListener("click", startMusic, { once: true });
 </script>
 
 <main>
