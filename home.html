@@ -3,63 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panthers & Vampires</title>
-    <link rel="stylesheet" href="assets/styles.css">
+    <title>Panthers & Vampires – Home</title>
 
 <style>
-    /* NARROW DESCRIPTION SCROLL BOX */
-    .description-box {
-        width: 60%;
-        max-width: 600px;
-        margin: 20px auto;
-        max-height: 300px;
-        overflow-y: auto;
-        padding-right: 10px;
-        line-height: 1.6;
+    :root {
+        --gold: #d6a44a;
+        --blue: #3aa0d8;
+        --white: #f2f2f2;
     }
 
-    .description-box::-webkit-scrollbar {
-        width: 8px;
-    }
-    .description-box::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 5px;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
 
+    body {
+        font-family: Georgia, serif;
+        background: #000;
+        color: var(--white);
+        overflow-x: hidden;
+    }
+
+    /* EMBLEM BACKGROUND */
+    .bg-emblem {
+        position: fixed;
+        inset: 0;
+        background: url("assets/1.png") center/contain no-repeat;
+        opacity: 0.45;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    main {
+        position: relative;
+        z-index: 2;
+        padding: 50px 0 200px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* TITLE */
+    .title h1 {
+        color: var(--gold);
+        font-size: 3rem;
+        letter-spacing: 0.1em;
+        text-align: center;
+    }
+
+    .title h2 {
+        color: var(--blue);
+        font-size: 1.7rem;
+        font-style: italic;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 40px;
+    }
+
+    /* BOOK COVER */
     .book-cover {
-        display: block;
-        width: 50%;
+        width: 45%;
         max-width: 350px;
-        margin: 20px auto;
-        border-radius: 8px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+        display: block;
     }
-</style>
 
+    /* DESCRIPTION BOX — MORE NARROW JUST LIKE YOU ASKED */
+    .description {
+        width: 45%;          /* NARROWER */
+        max-width: 420px;    /* NARROWER */
+        background: rgba(0,0,0,0.6);
+        padding: 20px;
+        border-radius: 10px;
+        line-height: 1.6;
+        font-size: 1rem;
+        max-height: 330px;   /* NEEDS SCROLL */
+        overflow-y: auto;
+        backdrop-filter: blur(4px);
+    }
+
+    .description::-webkit-scrollbar {
+        width: 7px;
+    }
+    .description::-webkit-scrollbar-thumb {
+        background: var(--gold);
+        border-radius: 10px;
+    }
+
+    /* BUTTONS */
+    .btn {
+        display: inline-block;
+        margin: 20px 10px;
+        padding: 12px 25px;
+        color: var(--gold);
+        border: 1px solid var(--gold);
+        text-decoration: none;
+        background: rgba(0,0,0,0.5);
+        border-radius: 30px;
+        transition: .3s;
+    }
+
+    .btn:hover {
+        background: var(--gold);
+        color: #000;
+    }
+
+    /* FOOTER NAV */
+    .footer-nav {
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    .footer-nav a {
+        color: var(--white);
+        margin: 0 15px;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: .3s;
+    }
+
+    .footer-nav a:hover {
+        color: var(--gold);
+    }
+
+</style>
 </head>
 
 <body>
 
-    <!-- NAVIGATION -->
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="store.html">Store</a></li>
-            <li><a href="merch.html">Merch</a></li>
-            <li><a href="about.html">About</a></li>
-        </ul>
-    </nav>
+<div class="bg-emblem"></div>
 
-    <!-- HERO SECTION -->
-    <div class="hero">
+<!-- AUTOPLAY MUSIC FIXED -->
+<audio id="themeAudio" autoplay loop>
+    <source src="assets/theme.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    const audio = document.getElementById("themeAudio");
+    audio.volume = 1.0;
+
+    // Required for iPhone autoplay fallback
+    audio.play().catch(() => {
+        document.body.addEventListener("click", () => {
+            audio.play();
+        }, { once: true });
+    });
+</script>
+
+<main>
+
+    <div class="title">
         <h1>PANTHERS & VAMPIRES</h1>
+        <h2>Blue Moon</h2>
     </div>
 
-    <!-- BOOK COVER -->
+    <!-- REAL BOOK COVER -->
     <img src="assets/Panthers_and_Vampires_Cover_KDP.jpg" class="book-cover" alt="Book Cover">
 
-    <!-- NARROWER SCROLLING DESCRIPTION BOX -->
-    <div class="description-box">
-        <p><strong>Series description:</strong><br><br>
+    <!-- NARROWER SCROLLING DESCRIPTION -->
+    <div class="description">
+        <p>
+        <strong>Series description:</strong><br><br>
         Salem, Massachusetts — built on blood, secrets, and the cries of the forgotten. Underneath its history of witch trials and slavery, a new kind of power was born. The descendants of the broken rose from the ashes — turning pain into power, and curses into crowns. Vampires. Witches. Panthers. Three bloodlines bound by survival, loyalty, and revenge.
         <br><br>
         King Pierce is a Panther — a shapeshifter whose gift only wakes when death calls his name before twenty-one. He’s from the concrete — raised by struggle, shaped by loyalty, and haunted by what he’s lost. Xzatalia, an original vampire, walks with centuries in her veins and heartbreak on her lips. Cursed by a man who once swore to love her, she’s been running from his shadow ever since — until she finds King.
@@ -76,21 +183,18 @@
         </p>
     </div>
 
-    <!-- AUDIO PLAYER -->
-    <div class="audio-container">
-        <audio id="themeAudio" autoplay loop>
-            <source src="assets/theme.mp3" type="audio/mpeg">
-        </audio>
-        <button onclick="toggleAudio()">🔊</button>
+    <a href="store.html" class="btn">Buy The Book</a>
+    <a href="merch.html" class="btn">Bundles & Merch</a>
+
+    <div class="footer-nav">
+        <a href="home.html">Home</a>
+        <a href="store.html">Store</a>
+        <a href="merch.html">Merch</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
     </div>
 
-    <script>
-        var audio = document.getElementById("themeAudio");
-        function toggleAudio() {
-            if (audio.paused) { audio.play(); }
-            else { audio.pause(); }
-        }
-    </script>
+</main>
 
 </body>
 </html>
