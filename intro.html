@@ -3,122 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enter — Panthers & Vampires</title>
+    <title>Panthers & Vampires – Intro</title>
 
     <style>
-        /* BASIC RESET */
-        * {
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
             background: #000;
             overflow: hidden;
-            height: 100vh;
-            width: 100vw;
-            font-family: "Times New Roman", serif;
-        }
-
-        /* FULLSCREEN CONTAINER */
-        .intro-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            animation: fadeIn 2s ease-in forwards;
+            height: 100vh;
         }
 
-        /* PANTHER IMAGE */
+        /* Fullscreen image */
         .panther-face {
-            width: 70%;
-            max-width: 600px;
-            opacity: 1;
-            animation: pantherFade 3.5s ease-in forwards;
-            filter: drop-shadow(0 0 40px #0044ff);
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            filter: brightness(0.75);
+        }
+
+        /* CINEMATIC BLUE EYE GLOW */
+        .eye-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at 43% 55%, rgba(0,140,255,0.6), transparent 30%),
+                        radial-gradient(circle at 57% 55%, rgba(0,140,255,0.6), transparent 30%);
+            mix-blend-mode: screen;
+            filter: blur(18px);
+        }
+
+        /* Cinematic smoke layer */
+        .smoke {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background: url('https://i.imgur.com/7iW4FQh.png'); /* high-res fog */
+            opacity: 0.25;
+            mix-blend-mode: lighten;
+            animation: smokeMove 25s linear infinite;
+        }
+
+        @keyframes smokeMove {
+            0% { transform: scale(1.3) translateX(0px) translateY(0px); }
+            50% { transform: scale(1.35) translateX(20px) translateY(-10px); }
+            100% { transform: scale(1.3) translateX(0px) translateY(0px); }
         }
 
         /* ENTER BUTTON */
         .enter-btn {
-            margin-top: 45px;
-            padding: 12px 32px;
-            border: 2px solid red;
-            background: transparent;
-            color: white;
+            position: absolute;
+            bottom: 40px;
+            padding: 15px 40px;
             font-size: 24px;
-            letter-spacing: 2px;
+            border: 2px solid red;
+            color: white;
+            background: rgba(0,0,0,0.5);
             cursor: pointer;
-            opacity: 0;
-            animation: fadeButton 5s ease-in forwards;
             transition: 0.3s;
         }
 
         .enter-btn:hover {
             background: red;
-            box-shadow: 0 0 25px red;
-        }
-
-        /* SMOKE EFFECT */
-        .smoke {
-            position: absolute;
-            width: 160%;
-            height: 160%;
-            top: -30%;
-            left: -30%;
-            background: url("https://raw.githubusercontent.com/adamgryu/public-assets/main/smoke1.png");
-            opacity: 0.2;
-            mix-blend-mode: screen;
-            animation: smokeMove 20s linear infinite;
-        }
-
-        /* ANIMATIONS */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes pantherFade {
-            0% { opacity: 0; transform: scale(1.15); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes fadeButton {
-            0% { opacity: 0; }
-            60% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes smokeMove {
-            0% { transform: translateX(0) translateY(0); }
-            100% { transform: translateX(-300px) translateY(-150px); }
+            color: black;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- SMOKE OVERLAY -->
+    <!-- Panther image fullscreen -->
+    <img src="assets/28133ae1-13ec-41fa-a11a-ce66fbd5715d.png" class="panther-face" alt="Panther">
+
+    <!-- Eye glow layer -->
+    <div class="eye-glow"></div>
+
+    <!-- Fog/smoke layer -->
     <div class="smoke"></div>
 
-    <!-- MAIN INTRO -->
-    <div class="intro-container">
-        <img src="assets/28133ae1-13ec-41fa-a11a-ce66fbd5715d.png" class="panther-face" alt="Panther Eyes">
-        <button class="enter-btn" onclick="goHome()">ENTER</button>
-    </div>
-
-    <!-- AUTO-PLAY AUDIO -->
-    <audio id="themeAudio" autoplay loop>
-        <source src="assets/theme.mp3" type="audio/mpeg">
-    </audio>
+    <!-- Enter button -->
+    <button class="enter-btn" onclick="enterSite()">ENTER</button>
 
     <script>
-        function goHome() {
+        function enterSite() {
             window.location.href = "home.html";
         }
     </script>
