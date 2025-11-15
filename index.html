@@ -13,66 +13,78 @@
             overflow: hidden;
         }
 
-        /* BACKGROUND IMAGE – FULL SCREEN */
+        /* FULL SCREEN IMAGE WITHOUT ZOOM */
         .panther-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            object-fit: cover;
+            object-fit: contain;     /* <-- THIS FIXES YOUR FULLSCREEN ZOOM ISSUE */
             z-index: 1;
         }
 
-        /* FOG – BOTTOM, LARGE, TRANSPARENT */
+        /* Fog Layer */
         .fog {
             position: fixed;
-            width: 200vw;      /* BIGGER */
-            height: 100vh;
-            bottom: -20vh;     /* PUSH FOG DOWN */
-            left: -50vw;       /* CENTER IT BETTER */
-
-            background: url("assets/fog.png");
-            background-repeat: no-repeat;
+            bottom: 0;
+            left: 0;
+            width: 200vw;
+            height: 50vh;
+            background: url("assets/fog.png") no-repeat center;
             background-size: cover;
-            opacity: 0.15;     /* MORE SEE THROUGH */
-            z-index: 3;
-
+            opacity: 0.18; /* more transparent */
             animation: fogMove 45s linear infinite;
+            z-index: 3;
             pointer-events: none;
         }
 
         @keyframes fogMove {
             0% { transform: translateX(0); }
-            50% { transform: translateX(50px); }
+            50% { transform: translateX(-25vw); }
             100% { transform: translateX(0); }
         }
+
+        /* Invisible click area (full screen) */
+        #clickArea {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 5;
+        }
     </style>
-
-    <!-- MUSIC -->
-    <audio id="theme" autoplay loop>
-        <source src="assets/theme.mp3" type="audio/mpeg">
-    </audio>
-
 </head>
+
 <body>
 
-    <!-- FULL BACKGROUND PANTHER -->
-    <img src="assets/28133ae1-13ec-41fa-a11a-ce66fbd5715d.png" class="panther-bg">
+    <!-- Full screen Panther -->
+    <img src="assets/28133ae1-13ec-41fa-a11a-ce66fbd5715d.png" class="panther-bg" alt="Panther">
 
-    <!-- FOG -->
+    <!-- Fog at bottom -->
     <div class="fog"></div>
 
-    <script>
-        // CLICK ANYWHERE TO ENTER
-        document.body.addEventListener("click", () => {
-            window.location.href = "home.html";
-        });
+    <!-- FULL SCREEN CLICK AREA -->
+    <div id="clickArea"></div>
 
-        // AUTO-REDIRECT AFTER 30 SECONDS
-        setTimeout(() => {
-            window.location.href = "home.html";
-        }, 30000);
+    <!-- Audio -->
+    <audio id="themeSong" src="assets/theme.mp3"></audio>
+
+    <script>
+        const audio = document.getElementById("themeSong");
+        const clickArea = document.getElementById("clickArea");
+
+        function enterSite() {
+            audio.play().catch(()=>{});   // start music
+            window.location.href = "home.html";  // go to homepage
+        }
+
+        // Click anywhere to enter + play music
+        clickArea.addEventListener("click", enterSite);
+
+        // Auto redirect after 60 seconds
+        setTimeout(enterSite, 30000);
     </script>
 
 </body>
