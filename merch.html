@@ -1,90 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merch — Panthers & Vampires</title>
-    <link rel="stylesheet" href="assets/styles.css">
+  <meta charset="UTF-8" />
+  <title>Merch – Panthers & Vampires</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script src="assets/script.js" defer></script>
 </head>
-
 <body>
+  <div class="page">
+    <header class="site-header">
+      <div class="logo-lockup">
+        <div class="logo-mark">P&V</div>
+        <div class="logo-text">
+          <span class="series-name">Panthers &amp; Vampires</span>
+          <span class="tagline-small">Blue Moon • Official Site</span>
+        </div>
+      </div>
 
-    <!-- NAVIGATION -->
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="store.html">Store</a></li>
-            <li><a href="merch.html">Merch</a></li>
-            <li><a href="about.html">About</a></li>
-        </ul>
-    </nav>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="store.html" class="nav-link">Store</a>
+        <a href="merch.html" class="nav-link active">Merch</a>
+        <a href="about.html" class="nav-link">About the Author</a>
+      </nav>
 
-    <h1 class="page-title">MERCH SHOP</h1>
+      <button class="audio-toggle" id="audioToggle">
+        ▶ Theme Song
+      </button>
+      <audio id="themeAudio" src="assets/theme-song.mp3" preload="none"></audio>
+    </header>
 
-    <!-- HOODIES -->
-    <h2 class="page-title" style="font-size:28px; margin-top:20px;">Hoodies</h2>
-    <div class="grid">
-        <div class="card">
-            <img src="https://via.placeholder.com/300x300" alt="Hoodie">
-            <h3>Classic P&V Hoodie</h3>
-            <p>Premium black hoodie with red emblem.</p>
-        </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/300x300" alt="Hoodie">
-            <h3>Blue Moon Hoodie</h3>
-            <p>Midnight blue — limited edition.</p>
-        </div>
-    </div>
+    <main>
+      <section class="section">
+        <header class="section-header">
+          <h1>Merch &amp; Extras</h1>
+          <p>Wear the tribe. Rep the vamps. Carry the world with you.</p>
+        </header>
 
-    <!-- SHIRTS -->
-    <h2 class="page-title" style="font-size:28px; margin-top:20px;">Shirts</h2>
-    <div class="grid">
-        <div class="card">
-            <img src="https://via.placeholder.com/300x300" alt="Shirt">
-            <h3>P&V Logo Shirt</h3>
-            <p>High-quality print.</p>
-        </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/300x300" alt="Shirt">
-            <h3>Tribe Panther Tee</h3>
-            <p>Signature panther emblem.</p>
-        </div>
-    </div>
+        <div class="merch-layout">
+          <div class="merch-copy">
+            <p>
+              All merch is handled through a separate storefront so printing and shipping
+              can stay on point while you focus on the story.
+            </p>
+            <p>
+              Expect shirts, hoodies, hats, prints, bookmarks, and more featuring
+              <strong>Panthers &amp; Vampires</strong> logos, symbols, and artwork.
+            </p>
+            <p class="tiny-text">
+              When your merch store is ready, replace the link below with your actual URL 
+              (Printful, Shopify, Etsy, whatever you decide).
+            </p>
 
-    <!-- POSTERS -->
-    <h2 class="page-title" style="font-size:28px; margin-top:20px;">Posters</h2>
-    <div class="grid">
-        <div class="card">
-            <img src="https://via.placeholder.com/300x300" alt="Poster">
-            <h3>Cover Art Poster</h3>
-            <p>High-resolution matte print.</p>
-        </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/300x300" alt="Poster">
-            <h3>Xzatalia Art Print</h3>
-            <p>A premium character portrait.</p>
-        </div>
-    </div>
+            <a href="https://example.com/your-merch-store" target="_blank" class="btn primary large">
+              🔗 View All Panthers &amp; Vampires Merch
+            </a>
+          </div>
 
-    <!-- BUNDLES -->
-    <h2 class="page-title" style="font-size:28px; margin-top:20px;">Bundles</h2>
-    <div class="grid">
-        <div class="card">
-            <img src="https://via.placeholder.com/300x300" alt="Bundle">
-            <h3>Book + Hoodie Bundle</h3>
-            <p>Save with special releases.</p>
+          <aside class="merch-preview">
+            <div class="mock-card">
+              <p class="mock-title">Mockup Preview</p>
+              <p class="mock-text">
+                Use your cover art and P&amp;V logo to create a clean grid of products on your
+                real storefront. This page just funnels readers there.
+              </p>
+            </div>
+          </aside>
         </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/300x300" alt="Bundle">
-            <h3>Ultimate P&V Bundle</h3>
-            <p>Includes book, hoodie, shirt, and poster.</p>
-        </div>
-    </div>
+      </section>
+    </main>
 
-    <!-- AUDIO PLAYER -->
-    <div class="audio-container">
-        <audio id="themeAudio" autoplay loop>
-            <source src="assets/theme.mp3" type="audio/mpeg">
-        </audio>
-        <button onclick="toggleAudio()">🔊</button>
-    </div>
+    <footer class="site-footer">
+      <p>&copy; <span id="year"></span> Michael Reyes Media. Panthers &amp; Vampires: Blue Moon.</p>
+    </footer>
+  </div>
+</body>
+</html>
