@@ -1,83 +1,114 @@
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        background: #000;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panthers & Vampires – Intro</title>
 
-    /* Fullscreen panther image */
-    .panther-face {
-        position: relative;
-        width: 100vw;
-        height: 100vh;
-        object-fit: cover;
-        z-index: 1;
-    }
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-    /* REAL EYE GLOW — positioned specifically for YOUR image */
-    .eye-glow {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        pointer-events: none;
+        /* Fullscreen panther image */
+        .panther-face {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: 1;
+        }
 
-        /* LEFT EYE */
-        background:
-            radial-gradient(circle at 47% 46%, rgba(0,130,255,0.9), transparent 22%),
+        /* REAL EYE GLOW — positioned specifically for YOUR image */
+        .eye-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
 
-            /* RIGHT EYE */
-            radial-gradient(circle at 60% 46%, rgba(0,130,255,0.9), transparent 22%);
+            /* LEFT EYE */
+            background:
+                radial-gradient(circle at 47% 46%, rgba(0,130,255,0.9), transparent 22%),
 
-        mix-blend-mode: screen;
-        filter: blur(14px);
-        z-index: 3;
-    }
+                /* RIGHT EYE */
+                radial-gradient(circle at 60% 46%, rgba(0,130,255,0.9), transparent 22%);
 
-    /* Fog layer */
-    .smoke {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        pointer-events: none;
-        background: url("https://raw.githubusercontent.com/ItsAdamAI/fog/main/fog.png");
-        background-size: cover;
-        opacity: 0.2;
-        mix-blend-mode: lighten;
-        animation: smokeMove 35s linear infinite;
-        z-index: 2;
-    }
+            mix-blend-mode: screen;
+            filter: blur(14px);
+            z-index: 3;
+        }
 
-    @keyframes smokeMove {
-        0% { transform: scale(1.2) translateX(0px); }
-        50% { transform: scale(1.22) translateX(25px); }
-        100% { transform: scale(1.2) translateX(0px); }
-    }
+        /* Fog layer */
+        .smoke {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background: url("https://raw.githubusercontent.com/ItsAdamAI/fog/main/fog.png");
+            background-size: cover;
+            opacity: 0.2;
+            mix-blend-mode: lighten;
+            animation: smokeMove 35s linear infinite;
+            z-index: 2;
+        }
 
-    /* ENTER BTN */
-    .enter-btn {
-        position: absolute;
-        bottom: 40px;
-        z-index: 4;
-        padding: 15px 40px;
-        font-size: 24px;
-        border: 2px solid red;
-        color: white;
-        background: rgba(0,0,0,0.5);
-        cursor: pointer;
-        transition: 0.3s;
-    }
+        @keyframes smokeMove {
+            0% { transform: scale(1.2) translateX(0px); }
+            50% { transform: scale(1.22) translateX(25px); }
+            100% { transform: scale(1.2) translateX(0px); }
+        }
 
-    .enter-btn:hover {
-        background: red;
-        color: black;
-    }
-</style>
+        /* ENTER BTN */
+        .enter-btn {
+            position: absolute;
+            bottom: 40px;
+            z-index: 4;
+            padding: 15px 40px;
+            font-size: 24px;
+            border: 2px solid red;
+            color: white;
+            background: rgba(0,0,0,0.5);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .enter-btn:hover {
+            background: red;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Panther image fullscreen -->
+    <img src="assets/28133ae1-13ec-41fa-a11a-ce66fbd5715d.png" class="panther-face" alt="Panther">
+
+    <!-- Eye glow layer -->
+    <div class="eye-glow"></div>
+
+    <!-- Fog/smoke layer -->
+    <div class="smoke"></div>
+
+    <!-- Enter button -->
+    <button class="enter-btn" onclick="enterSite()">ENTER</button>
+
+    <script>
+        function enterSite() {
+            window.location.href = "home.html";
+        }
+    </script>
+
+</body>
+</html>
