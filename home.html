@@ -1,201 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panthers & Vampires – Home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panthers & Vampires</title>
+<link rel="stylesheet" href="assets/styles.css">
 
 <style>
-    :root {
-        --gold: #d6a44a;
-        --blue: #3aa0d8;
-        --white: #f2f2f2;
-    }
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+/* ------------------------------------------
+   FULL BACKGROUND EMBLEM
+-------------------------------------------*/
+body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    color: white;
+    font-family: Georgia, serif;
+    overflow-x: hidden;
+}
 
-    body {
-        font-family: Georgia, serif;
-        background: #000;
-        color: var(--white);
-        overflow-x: hidden;
-    }
+.bg-emblem {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url("assets/1.png") center/contain no-repeat;
+    opacity: 0.09;      /* LIGHT so text stands out */
+    z-index: -1;
+}
 
-    /* 🔥 EMBLEM BACKGROUND (FULL BRIGHT, FULL SIZE) */
-    .bg-emblem {
-        position: fixed;
-        inset: 0;
-        background: url("assets/1.png") center/contain no-repeat;
-        opacity: 0.45; /* brighter */
-        z-index: 0;
-        pointer-events: none;
-    }
+/* ------------------------------------------
+   TOP SCROLLING PROMO BANNER
+-------------------------------------------*/
+.promo-banner {
+    width: 100%;
+    background: #4d0d0d;
+    padding: 8px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border-bottom: 2px solid #7a0000;
+    color: gold;
+    font-size: 18px;
+}
 
-    /* MAIN SCROLLING CONTENT */
-    main {
-        position: relative;
-        z-index: 2;
-        padding: 40px 20px 150px;
-        max-width: 900px;
-        margin: auto;
-    }
+.promo-banner span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scrollBanner 18s linear infinite;
+}
 
-    /* TITLE */
-    .title {
-        text-align: center;
-        margin-bottom: 30px;
-    }
+@keyframes scrollBanner {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
 
-    .title h1 {
-        color: var(--gold);
-        font-size: 3rem;
-        letter-spacing: 0.1em;
-    }
+/* ------------------------------------------
+   BOOK COVER
+-------------------------------------------*/
+.book-cover {
+    width: 60%;
+    max-width: 380px;
+    display: block;
+    margin: 30px auto 10px auto;
+    border: 3px solid gold;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+}
 
-    .title h2 {
-        color: var(--blue);
-        font-size: 1.8rem;
-        font-style: italic;
-        margin-top: 12px;
-    }
+/* ------------------------------------------
+   DESCRIPTION BOX (SCROLL)
+-------------------------------------------*/
+.desc-box {
+    width: 70%;
+    max-width: 650px;
+    margin: 0 auto;
+    max-height: 270px;
+    overflow-y: scroll;
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.55);
+    border-left: 2px solid gold;
+    border-right: 2px solid gold;
+    line-height: 1.55;
+    box-shadow: inset 0 0 12px rgba(0,0,0,0.6);
+}
 
-    /* BOOK COVER FIX */
-    .book-cover {
-        display: block;
-        width: 70%;
-        margin: 0 auto 25px;
-        border-radius: 10px;
-        box-shadow: 0 12px 25px rgba(0,0,0,0.7);
-    }
+/* Scrollbar styling */
+.desc-box::-webkit-scrollbar {
+    width: 8px;
+}
+.desc-box::-webkit-scrollbar-thumb {
+    background: gold;
+    border-radius: 10px;
+}
 
-    /* SHORT DESCRIPTION BLOCK */
-    .description {
-        background: rgba(0,0,0,0.6);
-        padding: 20px;
-        border-radius: 10px;
-        line-height: 1.6;
-        font-size: 1.05rem;
-        margin-bottom: 40px;
-        max-height: 330px;        /* HALF SIZE LIKE YOU ASKED */
-        overflow-y: auto;         /* SCROLLS INSIDE */
-    }
+/* ------------------------------------------
+   BUTTONS
+-------------------------------------------*/
+.btn {
+    display: block;
+    width: 200px;
+    text-align: center;
+    margin: 20px auto;
+    padding: 12px;
+    background: gold;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn:hover {
+    background: #e6b800;
+}
 
-    .description::-webkit-scrollbar {
-        width: 6px;
-    }
-    .description::-webkit-scrollbar-thumb {
-        background: var(--gold);
-    }
+/* ------------------------------------------
+   NAVIGATION AT BOTTOM
+-------------------------------------------*/
+nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.7);
+    padding: 10px 0;
+}
 
-    /* BUTTONS */
-    .buttons {
-        text-align: center;
-    }
+nav ul {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
 
-    .btn {
-        display: inline-block;
-        padding: 12px 25px;
-        border-radius: 40px;
-        margin: 10px;
-        text-decoration: none;
-        font-size: 1rem;
-        color: var(--gold);
-        border: 1px solid var(--gold);
-        background: rgba(0,0,0,0.6);
-        transition: 0.3s;
-    }
+nav a {
+    color: gold;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: bold;
+}
+nav a:hover {
+    color: #1b75d1;
+}
 
-    .btn:hover {
-        background: var(--gold);
-        color: #000;
-    }
-
-    /* BOTTOM NAVIGATION */
-    .footer-nav {
-        text-align: center;
-        margin-top: 50px;
-    }
-
-    .footer-nav a {
-        margin: 0 15px;
-        text-decoration: none;
-        color: var(--white);
-        text-transform: uppercase;
-        font-size: 0.9rem;
-        transition: .3s;
-    }
-
-    .footer-nav a:hover {
-        color: var(--gold);
-    }
+/* ------------------------------------------
+   AUDIO ICON
+-------------------------------------------*/
+.audio-toggle {
+    position: fixed;
+    top: 10px;
+    right: 15px;
+    font-size: 32px;
+    color: gold;
+    cursor: pointer;
+    z-index: 999;
+}
 
 </style>
 </head>
 
 <body>
 
-<!-- BACKGROUND EMBLEM FULL BRIGHT -->
+<!-- BACKGROUND EMBLEM -->
 <div class="bg-emblem"></div>
 
-<!-- AUTOPLAY MUSIC -->
+<!-- AUDIO -->
 <audio id="themeAudio" autoplay loop>
     <source src="assets/theme.mp3" type="audio/mpeg">
 </audio>
 
+<div class="audio-toggle" onclick="toggleAudio()">🔊</div>
+
+<!-- TOP PROMO BANNER -->
+<div class="promo-banner">
+    <span>🔥 Exclusive Deals • Signed Copies • Limited Merch Bundles • New Releases Every Season • Panthers & Vampires Universe Expanding •</span>
+</div>
+
+<!-- BOOK COVER -->
+<img src="assets/Panthers_and_Vampires_Cover_KDP.jpg" class="book-cover">
+
+<!-- DESCRIPTION BOX -->
+<div class="desc-box">
+    <p><strong>Series Description:</strong><br><br>
+    Salem, Massachusetts — built on blood, secrets, and the cries of the forgotten. Underneath its history of witch trials and slavery, a new kind of power was born. The descendants of the broken rose from the ashes — turning pain into power, and curses into crowns. Vampires. Witches. Panthers. Three bloodlines bound by survival, loyalty, and revenge.<br><br>
+
+    King Pierce is a Panther — a shapeshifter whose gift only wakes when death calls his name before twenty-one. He’s from the concrete — raised by struggle, shaped by loyalty, and haunted by what he’s lost. Xzatalia, an original vampire, walks with centuries in her veins and heartbreak on her lips. Cursed by a man who once swore to love her, she’s been running from his shadow ever since — until she finds King.<br><br>
+
+    Their connection is fire and war. Love and death. It’s that kind of love that don’t fade, even when blood hits the floor.  
+    Deja — witch-born, carrying the pain of her ancestors from Salem’s first burnings — steps into a legacy that’s been calling her name since before she was born.<br><br>
+
+    In this world, history breathes through blood.  
+    Every curse has a heartbeat.  
+    And every love story leaves a scar.<br><br>
+
+    <em>Panthers & Vampires</em> blends the raw soul of the streets with the myth of the supernatural — a story about power, loyalty, and love that refuses to die. Because even monsters remember where they come from.
+    </p>
+</div>
+
+<!-- BUY BUTTON -->
+<a class="btn" href="#">Buy Book</a>
+
+<!-- NAVIGATION -->
+<nav>
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="store.html">Store</a></li>
+        <li><a href="merch.html">Merch</a></li>
+        <li><a href="about.html">About</a></li>
+    </ul>
+</nav>
+
 <script>
-    // FORCE AUTOPLAY (fallback click system)
-    const audio = document.getElementById("themeAudio");
-    audio.volume = 1.0;
+var audio = document.getElementById("themeAudio");
 
-    audio.play().catch(() => {
-        document.body.addEventListener("click", () => {
-            audio.play();
-        }, { once: true });
-    });
+function toggleAudio() {
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+    }
+}
 </script>
-
-<main>
-
-    <!-- TITLES -->
-    <div class="title">
-        <h1>PANTHERS & VAMPIRES</h1>
-        <h2>Blue Moon</h2>
-    </div>
-
-    <!-- BOOK COVER -->
-    <img src="assets/Panthers_and_Vampires_Cover_KDP.jpg" class="book-cover">
-
-    <!-- SHORT DESCRIPTION (SCROLLABLE BLOCK) -->
-    <div class="description">
-        <p><strong>Series description:</strong><br>
-        Salem, Massachusetts — built on blood, secrets, and the cries of the forgotten...<br><br>
-        King Pierce is a Panther — a shapeshifter whose gift only wakes when death calls his name before twenty-one...<br><br>
-        Xzatalia, an original vampire, walks with centuries in her veins...<br><br>
-        Their connection is fire and war. Love and death. It’s that kind of love that don’t fade...<br><br>
-        Deja — witch-born, carrying the pain of her ancestors from Salem’s first burnings — steps into...
-        </p>
-    </div>
-
-    <!-- BUTTONS -->
-    <div class="buttons">
-        <a href="store.html" class="btn">Buy The Book</a>
-        <a href="merch.html" class="btn">Bundles & Merch</a>
-    </div>
-
-    <!-- BOTTOM NAV -->
-    <div class="footer-nav">
-        <a href="home.html">Home</a>
-        <a href="store.html">Store</a>
-        <a href="merch.html">Merch</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-    </div>
-
-</main>
 
 </body>
 </html>
