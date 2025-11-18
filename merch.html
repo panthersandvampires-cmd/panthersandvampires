@@ -1,82 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Merch – Panthers & Vampires</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="assets/styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <script src="assets/script.js" defer></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>P&V Merch Store</title>
+
+    <style>
+        :root {
+            --gold: #d6a44a;
+            --blue: #3aa0d8;
+            --white: #f2f2f2;
+        }
+
+        body {
+            margin: 0;
+            background: #000;
+            font-family: Georgia, serif;
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND IMAGE */
+        .bg-img {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('assets/2.png') center/cover no-repeat;
+            opacity: 0.12;
+            z-index: -1;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            padding: 40px 10px;
+            color: var(--gold);
+            font-size: 42px;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        /* BANNER SCROLLER */
+        .bundle-banner {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px;
+            background: rgba(0,0,0,0.6);
+        }
+        .bundle-card {
+            min-width: 300px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: var(--gold);
+            margin: 50px 0 20px;
+            text-align: center;
+            font-size: 32px;
+        }
+
+        /* MERCH GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            padding: 20px 40px;
+        }
+        .item {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        .item img {
+            width: 100%;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .item-title {
+            color: var(--gold);
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+
+        /* AUDIO */
+        audio { display: none; }
+    </style>
 </head>
 <body>
-  <div class="page">
-    <header class="site-header">
-      <div class="logo-lockup">
-        <div class="logo-mark">P&V</div>
-        <div class="logo-text">
-          <span class="series-name">Panthers &amp; Vampires</span>
-          <span class="tagline-small">Blue Moon • Official Site</span>
-        </div>
-      </div>
 
-      <nav class="main-nav">
-        <a href="home.html">Home</a>
-        <a href="store.html" class="nav-link">Store</a>
-        <a href="merch.html" class="nav-link active">Merch</a>
-        <a href="about.html" class="nav-link">About the Author</a>
-      </nav>
+<div class="bg-img"></div>
 
-      <button class="audio-toggle" id="audioToggle">
-        ▶ Theme Song
-      </button>
-      <audio id="themeAudio" src="assets/theme-song.mp3" preload="none"></audio>
-    </header>
+<!-- THEME MUSIC -->
+<audio id="themeAudio" autoplay loop>
+    <source src="assets/theme.mp3" type="audio/mpeg" />
+</audio>
+<script>
+    const audio = document.getElementById("themeAudio");
+    audio.volume = 1.0;
+    audio.play().catch(()=>{
+        document.addEventListener("click",()=>audio.play(),{once:true});
+    });
+</script>
 
-    <main>
-      <section class="section">
-        <header class="section-header">
-          <h1>Merch &amp; Extras</h1>
-          <p>Wear the tribe. Rep the vamps. Carry the world with you.</p>
-        </header>
+<header>PANTHERS & VAMPIRES — MERCH STORE</header>
 
-        <div class="merch-layout">
-          <div class="merch-copy">
-            <p>
-              All merch is handled through a separate storefront so printing and shipping
-              can stay on point while you focus on the story.
-            </p>
-            <p>
-              Expect shirts, hoodies, hats, prints, bookmarks, and more featuring
-              <strong>Panthers &amp; Vampires</strong> logos, symbols, and artwork.
-            </p>
-            <p class="tiny-text">
-              When your merch store is ready, replace the link below with your actual URL 
-              (Printful, Shopify, Etsy, whatever you decide).
-            </p>
+<!-- BUNDLE BANNER -->
+<div class="bundle-banner">
+    <div class="bundle-card">
+        <h3>Signed Book + Gold Foil Bookmark</h3>
+        <p>Exclusive collector bundle</p>
+    </div>
+    <div class="bundle-card">
+        <h3>Signed Book + Art Print (Xzatalia)</h3>
+        <p>Limited fan edition</p>
+    </div>
+    <div class="bundle-card">
+        <h3>Hoodie + Jogger Set</h3>
+        <p>P&V Logo Collection</p>
+    </div>
+</div>
 
-            <a href="https://example.com/your-merch-store" target="_blank" class="btn primary large">
-              🔗 View All Panthers &amp; Vampires Merch
-            </a>
-          </div>
+<!-- HOODIES & SWEATS -->
+<h2>Hoodies & Sweat Sets</h2>
+<div class="grid">
+    <div class="item"><div class="item-title">P&V Gold Logo Hoodie</div></div>
+    <div class="item"><div class="item-title">Midnight Panther Hoodie</div></div>
+    <div class="item"><div class="item-title">Vampire Bloodline Hoodie</div></div>
+    <div class="item"><div class="item-title">Hoodie + Jogger Fit Set</div></div>
+</div>
 
-          <aside class="merch-preview">
-            <div class="mock-card">
-              <p class="mock-title">Mockup Preview</p>
-              <p class="mock-text">
-                Use your cover art and P&amp;V logo to create a clean grid of products on your
-                real storefront. This page just funnels readers there.
-              </p>
-            </div>
-          </aside>
-        </div>
-      </section>
-    </main>
+<!-- SHIRTS -->
+<h2>Shirts & Tops</h2>
+<div class="grid">
+    <div class="item"><div class="item-title">P&V Logo T-Shirt</div></div>
+    <div class="item"><div class="item-title">Crop Top (Black/Gold)</div></div>
+    <div class="item"><div class="item-title">Tank Top (Panther Blue)</div></div>
+</div>
 
-    <footer class="site-footer">
-      <p>&copy; <span id="year"></span> Michael Reyes Media. Panthers &amp; Vampires: Blue Moon.</p>
-    </footer>
-  </div>
+<!-- ACCESSORIES -->
+<h2>Accessories</h2>
+<div class="grid">
+    <div class="item"><div class="item-title">Phone Cases</div></div>
+    <div class="item"><div class="item-title">Tote Bags</div></div>
+    <div class="item"><div class="item-title">Backpacks</div></div>
+    <div class="item"><div class="item-title">Hats & Beanies</div></div>
+    <div class="item"><div class="item-title">Keychains & Stickers</div></div>
+</div>
+
+<!-- PRINT ITEMS -->
+<h2>Print Artwork</h2>
+<div class="grid">
+    <div class="item"><div class="item-title">Posters</div></div>
+    <div class="item"><div class="item-title">Canvas Prints</div></div>
+    <div class="item"><div class="item-title">Metal Prints</div></div>
+    <div class="item"><div class="item-title">Bookmarks</div></div>
+</div>
+
+<!-- HOME ITEMS -->
+<h2>Home & Lifestyle</h2>
+<div class="grid">
+    <div class="item"><div class="item-title">Mugs</div></div>
+    <div class="item"><div class="item-title">Tumblers</div></div>
+    <div class="item"><div class="item-title">Throw Blankets</div></div>
+    <div class="item"><div class="item-title">Pillows</div></div>
+    <div class="item"><div class="item-title">Wall Tapestries</div></div>
+</div>
+
+<!-- COLLECTOR ITEMS -->
+<h2>Collector Items</h2>
+<div class="grid">
+    <div class="item"><div class="item-title">Character Trading Cards</div></div>
+    <div class="item"><div class="item-title">Signed Prints</div></div>
+    <div class="item"><div class="item-title">Gold Foil Bookmarks</div></div>
+    <div class="item"><div class="item-title">Metal Art Cards</div></div>
+</div>
+
+<!-- COLLECTOR BUNDLES -->
+<h2>Collector Editions & Bundles</h2>
+<div class="grid">
+    <div class="item"><div class="item-title">Signed Book + Bookmark</div></div>
+    <div class="item"><div class="item-title">Signed Book + Art Print</div></div>
+    <div class="item"><div class="item-title">Vampire Edition Cover Sleeve</div></div>
+    <div class="item"><div class="item-title">Panther Edition Metallic Sleeve</div></div>
+</div>
+
 </body>
 </html>
