@@ -2,149 +2,241 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Store – Panthers & Vampires: Blue Moon</title>
+  <title>Store – Panthers & Vampires</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="assets/styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <script src="assets/script.js" defer></script>
+
+  <!-- BOOK‑STYLE FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family:Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #d6a44a;
+      --blue: #3aa0d8;
+      --white: #f2f2f2;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Cinzel", serif;
+      background: #000;
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* EMBLEM BACKGROUND */
+    .bg-emblem {
+      position: fixed;
+      inset: 0;
+      background: url("assets/1.png") center/contain no-repeat;
+      opacity: 0.42;
+      z-index: 0;
+      pointer-events: none;
+      filter: drop-shadow(0 0 25px rgba(255, 0, 0, 0.6)) drop-shadow(0 0 45px rgba(255, 0, 0, 0.4));
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+      padding: 70px 0 150px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* PAGE TITLE */
+    .title {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .title h1 {
+      font-family: "Cinzel Decorative", serif;
+      font-size: 3.1rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-shadow: 0 0 8px rgba(0, 90, 255, 0.85), 0 0 18px rgba(0, 90, 255, 0.55);
+    }
+
+    .title h2 {
+      font-family: "Cinzel", serif;
+      color: var(--blue);
+      font-size: 1.7rem;
+      margin-top: 8px;
+      text-shadow: 0 0 8px rgba(255, 0, 0, 0.85), 0 0 16px rgba(255, 0, 0, 0.55);
+    }
+
+    /* STORE GRID */
+    .store-grid {
+      width: 92%;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      gap: 35px;
+      margin-top: 20px;
+    }
+
+    .store-card {
+      background: rgba(0,0,0,0.22);  /* WAY MORE SEE‑THRU */
+      padding: 22px;
+      border-radius: 14px;
+      border: 1px solid rgba(214,164,74,0.75);
+      backdrop-filter: blur(1.5px);
+      box-shadow:
+        0 0 12px rgba(255,215,0,0.22),
+        0 0 28px rgba(255,215,0,0.13);
+    }
+
+    .store-card h3 {
+      font-family: "Cinzel Decorative", serif;
+      color: var(--gold);
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 6px rgba(0, 90, 255, 0.85), 0 0 14px rgba(0, 90, 255, 0.55);
+    }
+
+    .store-card p,
+    .store-card li {
+      font-family: "Cinzel", serif;
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--white);
+    }
+
+    .store-card ul {
+      margin-top: 10px;
+      margin-left: 20px;
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 24px;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      text-decoration: none;
+      background: rgba(0,0,0,0.55);
+      border-radius: 30px;
+      transition: .3s;
+      text-shadow:
+        0 0 6px rgba(0, 90, 255, 0.85),
+        0 0 14px rgba(0, 90, 255, 0.55);
+    }
+
+    .btn:hover {
+      background: var(--gold);
+      color: #000;
+    }
+
+    /* FOOTER NAV */
+    .footer-nav {
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .footer-nav a {
+      font-family: "Cinzel", serif;
+      color: var(--white);
+      margin: 0 15px;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: .3s;
+    }
+
+    .footer-nav a:hover {
+      color: var(--gold);
+    }
+
+  </style>
 </head>
+
 <body>
-  <div class="page">
-    <header class="site-header">
-      <div class="logo-lockup">
-        <div class="logo-mark">P&V</div>
-        <div class="logo-text">
-          <span class="series-name">Panthers &amp; Vampires</span>
-          <span class="tagline-small">Blue Moon • Official Site</span>
-        </div>
-      </div>
 
-      <nav class="main-nav">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="store.html" class="nav-link active">Store</a>
-        <a href="merch.html" class="nav-link">Merch</a>
-        <a href="about.html" class="nav-link">About the Author</a>
-      </nav>
+<div class="bg-emblem"></div>
 
-      <button class="audio-toggle" id="audioToggle">
-        ▶ Theme Song
-      </button>
-      <audio id="themeAudio" src="assets/theme-song.mp3" preload="none"></audio>
-    </header>
-
-    <main>
-      <section class="section" id="books">
-        <header class="section-header">
-          <h1>Book Formats</h1>
-          <p>Choose how you want to experience Panthers &amp; Vampires: Blue Moon.</p>
-        </header>
-
-        <div class="card-grid">
-          <article class="card">
-            <h2>eBook (PDF)</h2>
-            <p class="card-tag">Exact page layout</p>
-            <p>
-              Downloadable <strong>PDF eBook</strong> that keeps all your custom design:
-              black pages, white text, fonts, and spacing.
-            </p>
-            <ul class="card-list">
-              <li>Instant digital delivery</li>
-              <li>Best for phones, tablets, or laptops</li>
-              <li>Yours to keep and reread</li>
-            </ul>
-            <div class="card-actions">
-              <a href="#" class="btn primary">Buy eBook (PDF)</a>
-              <p class="tiny-text">Replace this link with your payment / store URL.</p>
-            </div>
-          </article>
-
-          <article class="card">
-            <h2>Audiobook</h2>
-            <p class="card-tag">Coming soon / or available</p>
-            <p>
-              Listen to the story with full audio performance. Perfect for drives, gym
-              sessions, or late-night listening.
-            </p>
-            <ul class="card-list">
-              <li>Stream and/or download</li>
-              <li>Chapter markers and easy navigation</li>
-            </ul>
-            <div class="card-actions">
-              <a href="#" class="btn primary">Buy Audiobook</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <h2>Physical Copy</h2>
-            <p class="card-tag">Paperback / Hardcover</p>
-            <p>
-              Hold the world in your hands. Pick from standard or special edition print.
-            </p>
-            <ul class="card-list">
-              <li>Perfect for collections and gifts</li>
-              <li>Printed on demand</li>
-            </ul>
-            <div class="card-actions">
-              <a href="#" class="btn primary">Buy Physical Copy</a>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="bundles">
-        <header class="section-header">
-          <h2>Bundles &amp; Signed Editions</h2>
-          <p>Save money and get more of the world at once.</p>
-        </header>
-
-        <div class="card-grid">
-          <article class="card">
-            <h3>PDF + Audiobook Bundle</h3>
-            <p class="card-tag">Best value</p>
-            <ul class="card-list">
-              <li>Full PDF eBook</li>
-              <li>Full Audiobook</li>
-              <li>One-time bundle price</li>
-            </ul>
-            <div class="card-actions">
-              <a href="#" class="btn primary small">Buy Bundle</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <h3>Signed Copy + PDF</h3>
-            <p class="card-tag">Collector option</p>
-            <ul class="card-list">
-              <li>Signed physical copy</li>
-              <li>PDF eBook included</li>
-              <li>Personalized name/message</li>
-            </ul>
-            <div class="card-actions">
-              <a href="#" class="btn primary small">Reserve Signed Bundle</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <h3>Future Series Pack</h3>
-            <p class="card-tag">For long-term fans</p>
-            <ul class="card-list">
-              <li>Blue Moon (current)</li>
-              <li>Early access / discount on future books</li>
-              <li>Exclusive lore or bonus scenes</li>
-            </ul>
-            <div class="card-actions">
-              <a href="#" class="btn ghost small">Join Interest List</a>
-            </div>
-          </article>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <p>&copy; <span id="year"></span> Michael Reyes Media. Panthers &amp; Vampires: Blue Moon.</p>
-    </footer>
+<main>
+  <div class="title">
+    <h1>STORE</h1>
+    <h2>Panthers & Vampires – Blue Moon</h2>
   </div>
+
+  <div class="store-grid">
+
+    <!-- PDF EBOOK -->
+    <div class="store-card">
+      <h3>PDF eBook</h3>
+      <p>The exact book layout — black pages, white text, spacing, and all formatting preserved.</p>
+      <ul>
+        <li>Instant digital delivery</li>
+        <li>Works on all devices</li>
+        <li>100% matches your printed design</li>
+      </ul>
+      <a href="#" class="btn">Buy PDF eBook</a>
+    </div>
+
+    <!-- AUDIOBOOK -->
+    <div class="store-card">
+      <h3>Audiobook</h3>
+      <p>Full cinematic performance with emotional delivery and immersive sound.</p>
+      <ul>
+        <li>Stream or download</li>
+        <li>Chapter markers included</li>
+        <li>Perfect for late-night listening</li>
+      </ul>
+      <a href="#" class="btn">Buy Audiobook</a>
+    </div>
+
+    <!-- PAPERBACK -->
+    <div class="store-card">
+      <h3>Paperback Edition</h3>
+      <p>Standard physical copy for everyday reading — clean, lightweight, and easy to carry.</p>
+      <ul>
+        <li>High‑quality print</li>
+        <li>Same interior layout as your digital book</li>
+        <li>Ships directly to readers</li>
+      </ul>
+      <a href="#" class="btn">Buy Paperback</a>
+    </div>
+
+    <!-- SIGNED COPY -->
+    <div class="store-card">
+      <h3>Signed Physical Copy</h3>
+      <p>A collector's edition signed by the author.</p>
+      <ul>
+        <li>Personalized message</li>
+        <li>High-quality print</li>
+      </ul>
+      <a href="#" class="btn">Order Signed Copy</a>
+    </div>
+
+    <!-- BUNDLE -->
+    <div class="store-card">
+      <h3>Ultimate Bundle</h3>
+      <p>The complete experience:</p>
+      <ul>
+        <li>PDF eBook</li>
+        <li>Audiobook</li>
+        <li>Signed physical copy</li>
+      </ul>
+      <a href="#" class="btn">Get the Bundle</a>
+    </div>
+
+  </div>
+
+  <div class="footer-nav">
+    <a href="index.html">Home</a>
+    <a href="store.html">Store</a>
+    <a href="merch.html">Merch</a>
+    <a href="about.html">About</a>
+  </div>
+
+</main>
+
 </body>
 </html>
