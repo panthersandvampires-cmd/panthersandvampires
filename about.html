@@ -4,95 +4,256 @@
   <meta charset="UTF-8" />
   <title>About the Author – Panthers & Vampires: Blue Moon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="assets/styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <script src="assets/script.js" defer></script>
+
+  <!-- BOOK FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #d6a44a;
+      --blue: #3aa0d8;
+      --white: #f2f2f2;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Cinzel", serif;
+      background: #000;
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* BACKGROUND EMBLEM */
+    .bg-emblem {
+      position: fixed;
+      inset: 0;
+      background: url("assets/1.png") center/contain no-repeat;
+      opacity: 0.42;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* RED + BLUE GLOW ON TEXT */
+    body, p, h1, h2, h3, li, a, strong {
+      text-shadow:
+        0 0 6px rgba(255, 0, 0, 0.9),
+        0 0 14px rgba(255, 0, 0, 0.6),
+        0 0 10px rgba(0, 110, 255, 0.7);
+    }
+
+    /* HEADER */
+    header.site-header {
+      width: 100%;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 5;
+    }
+
+    .logo-lockup {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      font-size: 2rem;
+      font-family: "Cinzel Decorative", serif;
+      color: var(--gold);
+    }
+
+    .logo-text .series-name {
+      font-size: 1rem;
+      color: var(--gold);
+    }
+
+    .logo-text .tagline-small {
+      font-size: 0.8rem;
+      color: var(--blue);
+    }
+
+    /* NAVIGATION */
+    nav.main-nav a {
+      margin: 0 12px;
+      color: var(--white);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    nav.main-nav a:hover,
+    nav.main-nav .active {
+      color: var(--gold);
+    }
+
+    /* PAGE CONTAINER */
+    main {
+      position: relative;
+      z-index: 2;
+      padding: 60px 20px 120px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    /* HEADERS */
+    .section-header h1 {
+      color: var(--gold);
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .section-header p {
+      color: var(--white);
+      margin-bottom: 35px;
+      font-size: 1.1rem;
+    }
+
+    /* LAYOUT */
+    .about-layout {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+
+    .about-text {
+      flex: 2;
+      min-width: 280px;
+      background: rgba(0,0,0,0.45);
+      padding: 25px;
+      border-radius: 10px;
+      backdrop-filter: blur(3px);
+    }
+
+    .about-aside {
+      flex: 1;
+      min-width: 260px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .about-card {
+      background: rgba(0,0,0,0.45);
+      padding: 20px;
+      border-radius: 10px;
+      backdrop-filter: blur(3px);
+    }
+
+    footer.site-footer {
+      text-align: center;
+      padding: 40px 0;
+      color: var(--white);
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 2;
+    }
+  </style>
 </head>
+
 <body>
-  <div class="page">
-    <header class="site-header">
-      <div class="logo-lockup">
-        <div class="logo-mark">P&V</div>
-        <div class="logo-text">
-          <span class="series-name">Panthers &amp; Vampires</span>
-          <span class="tagline-small">Blue Moon • Official Site</span>
-        </div>
-      </div>
 
-      <nav class="main-nav">
-        <a href="home.html">Home</a>
-        <a href="store.html" class="nav-link">Store</a>
-        <a href="merch.html" class="nav-link">Merch</a>
-        <a href="about.html" class="nav-link active">About the Author</a>
-      </nav>
+<div class="bg-emblem"></div>
 
-      <button class="audio-toggle" id="audioToggle">
-        ▶ Theme Song
-      </button>
-      <audio id="themeAudio" src="assets/theme-song.mp3" preload="none"></audio>
+<header class="site-header">
+  <div class="logo-lockup">
+    <div class="logo-mark">P&V</div>
+    <div class="logo-text">
+      <span class="series-name">Panthers & Vampires</span><br>
+      <span class="tagline-small">Blue Moon • Official Site</span>
+    </div>
+  </div>
+
+  <nav class="main-nav">
+    <a href="home.html">Home</a>
+    <a href="store.html">Store</a>
+    <a href="merch.html">Merch</a>
+    <a href="about.html" class="active">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- THEME MUSIC -->
+<audio id="themeAudio" autoplay loop>
+    <source src="assets/theme.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const audio = document.getElementById("themeAudio");
+  audio.volume = 1.0;
+
+  audio.play().catch(() => {
+    document.addEventListener("click", () => {
+      audio.play();
+    }, { once: true });
+  });
+</script>
+
+<main>
+  <section class="section">
+    <header class="section-header">
+      <h1>About Michael Reyes</h1>
+      <p>Author • Storyteller • Creator of Panthers & Vampires.</p>
     </header>
 
-    <main>
-      <section class="section">
-        <header class="section-header">
-          <h1>About Michael Reyes</h1>
-          <p>Author • Storyteller • World-builder of Panthers &amp; Vampires.</p>
-        </header>
+    <div class="about-layout">
 
-        <div class="about-layout">
-          <div class="about-text">
-            <p>
-              Michael Reyes is a college student, creator, and storyteller who grew up around real
-              life streets, music, and hustle — and poured all of it into a supernatural universe
-              where witches, vampires, and werepanthers move just as grimy and emotional as real people.
-            </p>
-            <p>
-              <strong>Panthers &amp; Vampires: Blue Moon</strong> is the first book in a larger saga:
-              a blend of urban culture, dark fantasy, and generational trauma that stretches from
-              Salem to the modern day.
-            </p>
-            <p>
-              Every character is built with intention — flawed, loud, scared, loyal, and dangerous.
-              The goal isn’t just monsters and magic. It’s to tell stories about love, loss, family,
-              and what you’re willing to do for the people you claim.
-            </p>
-            <p>
-              When he’s not writing, Michael is working on music, visuals, and building out
-              <strong>Michael Reyes Media</strong> — a full ecosystem for the Panthers &amp; Vampires world:
-              books, audio, visuals, and merch.
-            </p>
-          </div>
+      <div class="about-text">
+        <p>
+          Michael Reyes is a college student, creator, and storyteller who grew up around real
+          life streets, music, and hustle — and poured all of it into a supernatural universe
+          where witches, vampires, and werepanthers move just as real and emotional as the people
+          they come from.
+        </p>
+        <p>
+          <strong>Panthers & Vampires: Blue Moon</strong> is the first book in a larger saga —
+          a blend of urban culture, dark fantasy, and generational trauma that stretches from
+          Salem to the modern day.
+        </p>
+        <p>
+          His characters are flawed, loyal, dangerous, and full of heart. The goal isn’t just
+          monsters and magic — it’s telling stories about love, pain, growth, and survival.
+        </p>
+        <p>
+          When he’s not writing, Michael is building music, visuals, and the entire creative
+          ecosystem behind <strong>Michael Reyes Media</strong>.
+        </p>
+      </div>
 
-          <aside class="about-aside">
-            <div class="about-card">
-              <h2>Series Vision</h2>
-              <ul>
-                <li>Multiple-book arc (Blue Moon is Book One)</li>
-                <li>Strong focus on character growth &amp; consequences</li>
-                <li>Mix of street drama, horror, and emotional beats</li>
-                <li>Built for readers who like dark, cinematic storytelling</li>
-              </ul>
-            </div>
-
-            <div class="about-card">
-              <h2>Connect</h2>
-              <p class="tiny-text">Replace these with your real links:</p>
-              <ul class="link-list">
-                <li><a href="#" target="_blank">Instagram</a></li>
-                <li><a href="#" target="_blank">TikTok / BookTok</a></li>
-                <li><a href="mailto:youremail@example.com">Email for events / signings</a></li>
-              </ul>
-            </div>
-          </aside>
+      <aside class="about-aside">
+        <div class="about-card">
+          <h2>Series Vision</h2>
+          <ul>
+            <li>Multi-book saga</li>
+            <li>Deep character development</li>
+            <li>Mix of horror, fantasy, & street realism</li>
+            <li>Raw, cinematic storytelling</li>
+          </ul>
         </div>
-      </section>
-    </main>
 
-    <footer class="site-footer">
-      <p>&copy; <span id="year"></span> Michael Reyes Media. Panthers &amp; Vampires: Blue Moon.</p>
-    </footer>
-  </div>
+        <div class="about-card">
+          <h2>Connect</h2>
+          <ul>
+            <li><a href="#" target="_blank">Instagram</a></li>
+            <li><a href="#" target="_blank">TikTok / BookTok</a></li>
+            <li><a href="mailto:youremail@example.com">Email</a></li>
+          </ul>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> Michael Reyes Media. Panthers & Vampires: Blue Moon.</p>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
