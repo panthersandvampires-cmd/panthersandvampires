@@ -25,19 +25,70 @@
         overflow-x: hidden;
     }
 
-    /* EMBLEM BACKGROUND */
+    /* BACKGROUND EMBLEM */
     .bg-emblem {
-    position: fixed;
-    inset: 0;
-    background: url("assets/2.png") center/contain no-repeat;
-    opacity: 0.45;
-    z-index: 0;
-    pointer-events: none;
-
-    /* 🔥 RED GLOW BEHIND EMBLEM */
-    filter: drop-shadow(0 0 25px rgba(255, 0, 0, 0.6))
-            drop-shadow(0 0 45px rgba(255, 0, 0, 0.4));
+        position: fixed;
+        inset: 0;
+        background: url("assets/2.png") center/contain no-repeat;
+        opacity: 0.45;
+        z-index: 0;
+        pointer-events: none;
+        filter: drop-shadow(0 0 25px rgba(255,0,0,0.6))
+                drop-shadow(0 0 45px rgba(255,0,0,0.4));
     }
+
+    /* HEADER ---------------------------- */
+    header.site-header {
+        width: 100%;
+        padding: 20px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        z-index: 5;
+    }
+
+    .logo-lockup {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logo-mark {
+        font-size: 2rem;
+        font-family: "Cinzel Decorative", serif;
+        color: var(--gold);
+        text-shadow: 0 0 10px rgba(255,0,0,0.9);
+    }
+
+    .logo-text .series-name {
+        font-size: 1rem;
+        color: var(--gold);
+        text-shadow: 0 0 10px rgba(0,110,255,0.7);
+    }
+
+    .logo-text .tagline-small {
+        font-size: 0.8rem;
+        color: var(--blue);
+        text-shadow: 0 0 10px rgba(255,0,0,0.7);
+    }
+
+    nav.main-nav a {
+        margin: 0 12px;
+        color: var(--white);
+        text-decoration: none;
+        font-size: 1rem;
+        transition: 0.3s;
+        text-shadow:
+            0 0 6px rgba(255,0,0,0.9),
+            0 0 10px rgba(0,110,255,0.7);
+    }
+
+    nav.main-nav a:hover {
+        color: var(--gold);
+    }
+
+    /* HOME PAGE ORIGINAL DESIGN BELOW -------------------- */
 
     main {
         position: relative;
@@ -49,87 +100,54 @@
         align-items: center;
     }
 
-    /* TITLE */
     .title h1 {
-    color: var(--gold);
-    font-size: 3rem;
-    letter-spacing: 0.1em;
-    text-align: center;
-
-    /* 🔵 BLUE GLOW BEHIND GOLD */
-    text-shadow:
-        0 0 8px rgba(0, 90, 255, 0.8),
-        0 0 18px rgba(0, 90, 255, 0.5);
+        color: var(--gold);
+        font-size: 3rem;
+        letter-spacing: 0.1em;
+        text-align: center;
+        text-shadow:
+            0 0 8px rgba(0, 90, 255, 0.8),
+            0 0 18px rgba(0, 90, 255, 0.5);
     }
-.btn {
-    display: inline-block;
-    margin: 20px 10px;
-    padding: 12px 25px;
-    color: var(--gold);
-    border: 1px solid var(--gold);
-    text-decoration: none;
-    background: rgba(0,0,0,0.5);
-    border-radius: 30px;
-    transition: .3s;
 
-    /* 🔵 BLUE GLOW FOR GOLD BUTTON TEXT */
-    text-shadow:
-        0 0 6px rgba(0, 90, 255, 0.8),
-        0 0 14px rgba(0, 90, 255, 0.5);
-}
-   .title h2 {
-    color: var(--blue);
-    font-size: 1.7rem;
-    font-style: italic;
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 40px;
-
-    /* 🔥 RED GLOW FOR BLUE TEXT */
-    text-shadow:
-        0 0 8px rgba(255, 0, 0, 0.85),
-        0 0 16px rgba(255, 0, 0, 0.6);
+    .title h2 {
+        color: var(--blue);
+        font-size: 1.7rem;
+        font-style: italic;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 40px;
+        text-shadow:
+            0 0 8px rgba(255, 0, 0, 0.85),
+            0 0 16px rgba(255, 0, 0, 0.6);
     }
 
     /* BOOK COVER */
     .book-cover {
-    width: 45%;
-    max-width: 350px;
-    border-radius: 10px;
-
-    /* 🔥 SOFT GOLD GLOW OUTLINE */
-    box-shadow:
-        0 0 12px rgba(255, 215, 0, 0.4),
-        0 0 22px rgba(255, 215, 0, 0.25),
-        0 0 35px rgba(255, 215, 0, 0.15);
-
-    margin-bottom: 25px;
-    display: block;
+        width: 45%;
+        max-width: 350px;
+        border-radius: 10px;
+        box-shadow:
+            0 0 12px rgba(255, 215, 0, 0.4),
+            0 0 22px rgba(255, 215, 0, 0.25),
+            0 0 35px rgba(255, 215, 0, 0.15);
+        margin-bottom: 25px;
+        display: block;
     }
 
-    /* DESCRIPTION BOX — MORE NARROW JUST LIKE YOU ASKED */
+    /* DESCRIPTION — WIDE + NORMAL PAGE SCROLL */
     .description {
-        width: 45%;          /* NARROWER */
-        max-width: 420px;    /* NARROWER */
-        background: rgba(0,0,0,0.6);
-        padding: 20px;
-        border-radius: 10px;
+        width: 70%;
+        max-width: 750px;
+        background: none;
+        padding: 0;
+        border-radius: 0;
         line-height: 1.6;
-        font-size: 1rem;
-        max-height: 330px;   /* NEEDS SCROLL */
-        overflow-y: auto;
-        backdrop-filter: blur(4px);
+        font-size: 1.1rem;
+        overflow: visible;
+        max-height: none;
     }
 
-    .description::-webkit-scrollbar {
-        width: 7px;
-    }
-    .description::-webkit-scrollbar-thumb {
-        background: var(--gold);
-        border-radius: 10px;
-    }
-
-    /* BUTTONS */
     .btn {
         display: inline-block;
         margin: 20px 10px;
@@ -140,6 +158,9 @@
         background: rgba(0,0,0,0.5);
         border-radius: 30px;
         transition: .3s;
+        text-shadow:
+            0 0 6px rgba(0, 90, 255, 0.8),
+            0 0 14px rgba(0, 90, 255, 0.5);
     }
 
     .btn:hover {
@@ -147,7 +168,6 @@
         color: #000;
     }
 
-    /* FOOTER NAV */
     .footer-nav {
         margin-top: 40px;
         text-align: center;
@@ -172,22 +192,35 @@
 
 <div class="bg-emblem"></div>
 
-<!-- AUTOPLAY MUSIC FIXED -->
+<!-- ⭐ MATCHING TOP HEADER -->
+<header class="site-header">
+  <div class="logo-lockup">
+    <div class="logo-mark">P&V</div>
+    <div class="logo-text">
+      <span class="series-name">Panthers & Vampires</span><br>
+      <span class="tagline-small">Blue Moon • Official Site</span>
+    </div>
+  </div>
+
+  <nav class="main-nav">
+    <a href="home.html">Home</a>
+    <a href="store.html">Store</a>
+    <a href="merch.html">Merch</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- MUSIC -->
 <audio id="themeAudio" autoplay loop>
     <source src="assets/theme.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-      const audio = document.getElementById("themeAudio");
+    const audio = document.getElementById("themeAudio");
     audio.volume = 1.0;
-
-    // Force autoplay + fallback for mobile
-    function startMusic() {
-        audio.play().catch(() => {});
-    }
-
+    function startMusic() { audio.play().catch(() => {}); }
     startMusic();
-
     document.addEventListener("click", startMusic, { once: true });
 </script>
 
@@ -198,10 +231,8 @@
         <h2>Blue Moon</h2>
     </div>
 
-    <!-- REAL BOOK COVER -->
     <img src="assets/Panthers_and_Vampires_Cover_KDP.jpg" class="book-cover" alt="Book Cover">
 
-    <!-- NARROWER SCROLLING DESCRIPTION -->
     <div class="description">
         <p>
         <strong>Series description:</strong><br><br>
@@ -209,15 +240,11 @@
         <br><br>
         King Pierce is a Panther — a shapeshifter whose gift only wakes when death calls his name before twenty-one. He’s from the concrete — raised by struggle, shaped by loyalty, and haunted by what he’s lost. Xzatalia, an original vampire, walks with centuries in her veins and heartbreak on her lips. Cursed by a man who once swore to love her, she’s been running from his shadow ever since — until she finds King.
         <br><br>
-        Their connection is fire and war. Love and death. It’s that kind of love that don’t fade, even when blood hits the floor.
-        Deja — witch-born, carrying the pain of her ancestors from Salem’s first burnings — steps into a legacy that’s been calling her name since before she was born.
+        Their connection is fire and war. Love and death. It’s that kind of love that don’t fade, even when blood hits the floor. Deja — witch-born, carrying the pain of her ancestors from Salem’s first burnings — steps into a legacy that’s been calling her name since before she was born.
         <br><br>
-        In this world, history breathes through blood.
-        Every curse has a heartbeat.
-        And every love story leaves a scar.
+        In this world, history breathes through blood. Every curse has a heartbeat. And every love story leaves a scar.
         <br><br>
-        Panthers & Vampires blends the raw soul of the streets with the myth of the supernatural — a story about power, loyalty, and love that refuses to die.
-        Because even monsters remember where they come from.
+        Panthers & Vampires blends the raw soul of the streets with the myth of the supernatural — a story about power, loyalty, and love that refuses to die. Because even monsters remember where they come from.
         </p>
     </div>
 
