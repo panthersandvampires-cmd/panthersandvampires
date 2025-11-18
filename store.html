@@ -5,8 +5,8 @@
   <title>Store – Panthers & Vampires</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- BOOK‑STYLE FONTS -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family:Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+  <!-- BOOK-STYLE FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -82,7 +82,7 @@
     }
 
     .store-card {
-      background: rgba(0,0,0,0.22);  /* WAY MORE SEE‑THRU */
+      background: rgba(0,0,0,0.22);
       padding: 22px;
       border-radius: 14px;
       border: 1px solid rgba(214,164,74,0.75);
@@ -158,6 +158,24 @@
 
 <body>
 
+<!-- 🔥 THEME MUSIC (autoplay, loop, mobile safe) -->
+<audio id="themeAudio" autoplay loop>
+    <source src="assets/theme.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const audio = document.getElementById("themeAudio");
+  audio.volume = 1.0;
+
+  // Full autoplay attempt
+  audio.play().catch(() => {
+    // If autoplay is blocked on iPhone, start on first screen tap
+    document.addEventListener("click", () => {
+      audio.play();
+    }, { once: true });
+  });
+</script>
+
 <div class="bg-emblem"></div>
 
 <main>
@@ -197,7 +215,7 @@
       <h3>Paperback Edition</h3>
       <p>Standard physical copy for everyday reading — clean, lightweight, and easy to carry.</p>
       <ul>
-        <li>High‑quality print</li>
+        <li>High-quality print</li>
         <li>Same interior layout as your digital book</li>
         <li>Ships directly to readers</li>
       </ul>
@@ -240,3 +258,4 @@
 
 </body>
 </html>
+
