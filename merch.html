@@ -14,184 +14,222 @@
 
         body {
             margin: 0;
-            background: #000;
             font-family: Georgia, serif;
+            background: #000;
             color: var(--white);
             overflow-x: hidden;
         }
 
-        /* BACKGROUND IMAGE */
-        .bg-img {
+        /* BACKGROUND */
+        .bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             background: url('assets/2.png') center/cover no-repeat;
-            opacity: 0.12;
+            opacity: 0.17;
             z-index: -1;
         }
 
         /* HEADER */
         header {
+            width: 100%;
             text-align: center;
-            padding: 40px 10px;
+            padding: 40px 0;
             color: var(--gold);
-            font-size: 42px;
+            font-size: 50px;
             letter-spacing: 2px;
             font-weight: bold;
+            background: rgba(0,0,0,0.75);
+            border-bottom: 1px solid var(--gold);
         }
 
-        /* BANNER SCROLLER */
-        .bundle-banner {
+        /* BUNDLE SCROLLER */
+        .bundle-scroll {
             display: flex;
             overflow-x: auto;
-            gap: 20px;
+            gap: 25px;
             padding: 20px;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.7);
+            border-top: 1px solid var(--gold);
+            border-bottom: 1px solid var(--gold);
+            scroll-behavior: smooth;
         }
         .bundle-card {
-            min-width: 300px;
-            background: rgba(255,255,255,0.06);
+            min-width: 340px;
+            background: rgba(255,255,255,0.07);
             border: 1px solid var(--gold);
             border-radius: 12px;
             padding: 20px;
             text-align: center;
+            transition: 0.3s;
+        }
+        .bundle-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--gold);
+        }
+        .bundle-card h3 {
+            color: var(--gold);
+            font-size: 24px;
+            margin-bottom: 10px;
         }
 
+        /* SECTION HEADERS */
         h2 {
             color: var(--gold);
-            margin: 50px 0 20px;
+            font-size: 38px;
             text-align: center;
-            font-size: 32px;
+            margin: 60px 0 20px;
         }
 
         /* MERCH GRID */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-            padding: 20px 40px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 10px 40px 40px;
         }
         .item {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 10px;
-            padding: 15px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 20px;
             text-align: center;
+            transition: 0.3s;
+        }
+        .item:hover {
+            box-shadow: 0 0 18px var(--gold);
+            transform: translateY(-5px);
         }
         .item img {
             width: 100%;
-            border-radius: 6px;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 8px;
             margin-bottom: 10px;
+            filter: brightness(0.8);
+            transition: 0.3s;
+        }
+        .item img:hover {
+            filter: brightness(1);
         }
 
         .item-title {
+            font-size: 20px;
             color: var(--gold);
-            font-size: 18px;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
-        /* AUDIO */
-        audio { display: none; }
+        /* BUTTONS */
+        .buy-btn {
+            padding: 10px 20px;
+            background: var(--gold);
+            color: #000;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+        }
+        .buy-btn:hover {
+            transform: scale(1.08);
+            background: #f7c75d;
+        }
+
+        audio { display:none; }
     </style>
 </head>
 <body>
 
-<div class="bg-img"></div>
+<div class="bg"></div>
 
 <!-- THEME MUSIC -->
 <audio id="themeAudio" autoplay loop>
     <source src="assets/theme.mp3" type="audio/mpeg" />
 </audio>
 <script>
-    const audio = document.getElementById("themeAudio");
-    audio.volume = 1.0;
-    audio.play().catch(()=>{
-        document.addEventListener("click",()=>audio.play(),{once:true});
-    });
+    const a = document.getElementById("themeAudio"); a.volume = 1.0;
+    a.play().catch(()=>document.addEventListener("click",()=>a.play(),{once:true}));
 </script>
 
-<header>PANTHERS & VAMPIRES — MERCH STORE</header>
+<header>P&V MERCH STORE</header>
 
-<!-- BUNDLE BANNER -->
-<div class="bundle-banner">
-    <div class="bundle-card">
-        <h3>Signed Book + Gold Foil Bookmark</h3>
-        <p>Exclusive collector bundle</p>
-    </div>
-    <div class="bundle-card">
-        <h3>Signed Book + Art Print (Xzatalia)</h3>
-        <p>Limited fan edition</p>
-    </div>
-    <div class="bundle-card">
-        <h3>Hoodie + Jogger Set</h3>
-        <p>P&V Logo Collection</p>
-    </div>
+<!-- BUNDLE SCROLLER -->
+<div class="bundle-scroll">
+    <div class="bundle-card"><h3>Signed Book + Gold Foil Bookmark</h3><p>Collector Premium Edition</p><button class="buy-btn">View Bundle</button></div>
+    <div class="bundle-card"><h3>Signed Book + Character Art Print</h3><p>Xzatalia Limited Fan Drop</p><button class="buy-btn">View Bundle</button></div>
+    <div class="bundle-card"><h3>Hoodie + Jogger Matching Fit Set</h3><p>P&V Logo Collection</p><button class="buy-btn">View Set</button></div>
+    <div class="bundle-card"><h3>Signed Book + Metal Art Card</h3><p>Panther Tribe Special Bundle</p><button class="buy-btn">View Bundle</button></div>
 </div>
 
 <!-- HOODIES & SWEATS -->
 <h2>Hoodies & Sweat Sets</h2>
 <div class="grid">
-    <div class="item"><div class="item-title">P&V Gold Logo Hoodie</div></div>
-    <div class="item"><div class="item-title">Midnight Panther Hoodie</div></div>
-    <div class="item"><div class="item-title">Vampire Bloodline Hoodie</div></div>
-    <div class="item"><div class="item-title">Hoodie + Jogger Fit Set</div></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">P&V Gold Logo Hoodie</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Midnight Panther Hoodie</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Vampire Bloodline Hoodie</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Jogger + Hoodie Fit Set</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Zip Hoodie (Black/Gold)</div><button class="buy-btn">View</button></div>
 </div>
 
 <!-- SHIRTS -->
 <h2>Shirts & Tops</h2>
 <div class="grid">
-    <div class="item"><div class="item-title">P&V Logo T-Shirt</div></div>
-    <div class="item"><div class="item-title">Crop Top (Black/Gold)</div></div>
-    <div class="item"><div class="item-title">Tank Top (Panther Blue)</div></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">P&V Classic T-Shirt</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Crop Top — Panther Blue</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Tank Top — Blood Moon</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Long Sleeve P&V Mark</div><button class="buy-btn">View</button></div>
 </div>
 
 <!-- ACCESSORIES -->
 <h2>Accessories</h2>
 <div class="grid">
-    <div class="item"><div class="item-title">Phone Cases</div></div>
-    <div class="item"><div class="item-title">Tote Bags</div></div>
-    <div class="item"><div class="item-title">Backpacks</div></div>
-    <div class="item"><div class="item-title">Hats & Beanies</div></div>
-    <div class="item"><div class="item-title">Keychains & Stickers</div></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Phone Cases</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Tote Bags</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Backpacks</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Hats & Beanies</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Keychains & Stickers</div><button class="buy-btn">View</button></div>
 </div>
 
 <!-- PRINT ITEMS -->
-<h2>Print Artwork</h2>
+<h2>Posters & Artwork</h2>
 <div class="grid">
-    <div class="item"><div class="item-title">Posters</div></div>
-    <div class="item"><div class="item-title">Canvas Prints</div></div>
-    <div class="item"><div class="item-title">Metal Prints</div></div>
-    <div class="item"><div class="item-title">Bookmarks</div></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Posters</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Canvas Prints</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Metal Prints</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Bookmarks</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Decals</div><button class="buy-btn">View</button></div>
 </div>
 
-<!-- HOME ITEMS -->
+<!-- HOME & LIFESTYLE -->
 <h2>Home & Lifestyle</h2>
 <div class="grid">
-    <div class="item"><div class="item-title">Mugs</div></div>
-    <div class="item"><div class="item-title">Tumblers</div></div>
-    <div class="item"><div class="item-title">Throw Blankets</div></div>
-    <div class="item"><div class="item-title">Pillows</div></div>
-    <div class="item"><div class="item-title">Wall Tapestries</div></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Mugs</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Tumblers</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Throw Blankets</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Pillows</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Wall Tapestries</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Notebooks & Journals</div><button class="buy-btn">View</button></div>
 </div>
 
 <!-- COLLECTOR ITEMS -->
 <h2>Collector Items</h2>
 <div class="grid">
-    <div class="item"><div class="item-title">Character Trading Cards</div></div>
-    <div class="item"><div class="item-title">Signed Prints</div></div>
-    <div class="item"><div class="item-title">Gold Foil Bookmarks</div></div>
-    <div class="item"><div class="item-title">Metal Art Cards</div></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Character Trading Cards</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Signed Prints</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Gold Foil Bookmarks</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Metal Art Cards</div><button class="buy-btn">View</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Book Sleeves</div><button class="buy-btn">View</button></div>
 </div>
 
-<!-- COLLECTOR BUNDLES -->
-<h2>Collector Editions & Bundles</h2>
+<!-- BUNDLES -->
+<h2>Collector Bundles</h2>
 <div class="grid">
-    <div class="item"><div class="item-title">Signed Book + Bookmark</div></div>
-    <div class="item"><div class="item-title">Signed Book + Art Print</div></div>
-    <div class="item"><div class="item-title">Vampire Edition Cover Sleeve</div></div>
-    <div class="item"><div class="item-title">Panther Edition Metallic Sleeve</div></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Signed Book + Bookmark</div><button class="buy-btn">View Bundle</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Signed Book + Art Print</div><button class="buy-btn">View Bundle</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Vampire Edition Sleeve</div><button class="buy-btn">View Bundle</button></div>
+    <div class="item"><img src="assets/placeholder.png" /><div class="item-title">Panther Edition Metallic Sleeve</div><button class="buy-btn">View Bundle</button></div>
 </div>
 
 </body>
