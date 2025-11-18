@@ -1,200 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>P&V Merch Store</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panthers & Vampires – Merch</title>
 
-    <style>
-        :root {
-            --gold: #d6a44a;
-            --blue: #3aa0d8;
-            --white: #f2f2f2;
-        }
+<style>
+    :root {
+        --gold: #d6a44a;
+        --blue: #3aa0d8;
+        --white: #f2f2f2;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        body {
-            font-family: Georgia, serif;
-            background: #000;
-            color: var(--white);
-            overflow-x: hidden;
-        }
+    body {
+        font-family: Georgia, serif;
+        background: #000;
+        color: var(--white);
+        overflow-x: hidden;
+    }
 
-        /* MATCHING BACKGROUND EMBLEM */
-        .bg-emblem {
-            position: fixed;
-            inset: 0;
-            background: url("assets/2.png") center/contain no-repeat;
-            opacity: 0.45;
-            z-index: 0;
-            pointer-events: none;
-            filter: drop-shadow(0 0 25px rgba(255,0,0,0.6))
-                    drop-shadow(0 0 45px rgba(255,0,0,0.4));
-        }
+    /* BACKGROUND EMBLEM (MATCH HOME) */
+    .bg-emblem {
+        position: fixed;
+        inset: 0;
+        background: url("assets/2.png") center/contain no-repeat;
+        opacity: 0.45;
+        z-index: 0;
+        pointer-events: none;
+        filter: drop-shadow(0 0 25px rgba(255,0,0,0.6))
+                drop-shadow(0 0 45px rgba(255,0,0,0.4));
+    }
 
-        /* MATCHING TOP HEADER */
-        header.site-header {
-            width: 100%;
-            padding: 20px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            z-index: 5;
-        }
+    /* HEADER (MATCH HOME) */
+    header.site-header {
+        width: 100%;
+        padding: 20px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        z-index: 5;
+    }
 
-        .logo-lockup {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    .logo-lockup {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 
-        .logo-mark {
-            font-size: 2rem;
-            font-family: "Cinzel Decorative", serif;
-            color: var(--gold);
-            text-shadow: 0 0 10px rgba(255,0,0,0.9);
-        }
+    .logo-mark {
+        font-size: 2rem;
+        font-family: "Cinzel Decorative", serif;
+        color: var(--gold);
+        text-shadow: 0 0 10px rgba(255,0,0,0.9);
+    }
 
-        .logo-text .series-name {
-            font-size: 1rem;
-            color: var(--gold);
-            text-shadow: 0 0 10px rgba(0,110,255,0.7);
-        }
+    .logo-text .series-name {
+        font-size: 1rem;
+        color: var(--gold);
+        text-shadow: 0 0 10px rgba(0,110,255,0.7);
+    }
 
-        .logo-text .tagline-small {
-            font-size: 0.8rem;
-            color: var(--blue);
-            text-shadow: 0 0 10px rgba(255,0,0,0.7);
-        }
+    .logo-text .tagline-small {
+        font-size: 0.8rem;
+        color: var(--blue);
+        text-shadow: 0 0 10px rgba(255,0,0,0.7);
+    }
 
-        nav.main-nav a {
-            margin: 0 12px;
-            color: var(--white);
-            text-decoration: none;
-            font-size: 1rem;
-            transition: 0.3s;
-            text-shadow:
-                0 0 6px rgba(255,0,0,0.9),
-                0 0 10px rgba(0,110,255,0.7);
-        }
+    nav.main-nav a {
+        margin: 0 12px;
+        color: var(--white);
+        text-decoration: none;
+        font-size: 1rem;
+        transition: 0.3s;
+        text-shadow:
+            0 0 6px rgba(255,0,0,0.9),
+            0 0 10px rgba(0,110,255,0.7);
+    }
 
-        nav.main-nav a:hover {
-            color: var(--gold);
-        }
+    nav.main-nav a:hover {
+        color: var(--gold);
+    }
 
-        /* PAGE TITLE */
-        .page-title {
-            text-align: center;
-            margin-top: 40px;
-            color: var(--gold);
-            font-size: 3rem;
-            letter-spacing: 0.1em;
-            text-shadow:
-                0 0 8px rgba(0, 90, 255, 0.8),
-                0 0 18px rgba(0, 90, 255, 0.5);
-            position: relative;
-            z-index: 5;
-        }
+    main {
+        position: relative;
+        z-index: 2;
+        padding: 40px 0 120px;
+        width: 100%;
+    }
 
-        /* BUNDLE SCROLLER */
-        .bundle-scroll {
-            display: flex;
-            overflow-x: auto;
-            gap: 25px;
-            padding: 20px;
-            background: rgba(0,0,0,0.7);
-            border-top: 1px solid var(--gold);
-            border-bottom: 1px solid var(--gold);
-            margin-top: 25px;
-            position: relative;
-            z-index: 5;
-        }
-        .bundle-card {
-            min-width: 350px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--gold);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            transition: 0.3s;
-        }
-        .bundle-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px var(--gold);
-        }
+    .page-title {
+        text-align: center;
+        margin-top: 10px;
+        color: var(--gold);
+        font-size: 2.6rem;
+        letter-spacing: 0.12em;
+        text-shadow:
+            0 0 8px rgba(0, 90, 255, 0.8),
+            0 0 18px rgba(0, 90, 255, 0.5);
+    }
 
-        /* SECTION HEADERS */
-        h2 {
-            color: var(--gold);
-            font-size: 2.5rem;
-            text-align: center;
-            margin: 70px 0 20px;
-            text-shadow:
-                0 0 8px rgba(255,0,0,0.7),
-                0 0 12px rgba(0,110,255,0.7);
-            position: relative;
-            z-index: 5;
-        }
+    /* SCROLLING BUNDLE BANNER */
+    .bundle-strip {
+        margin-top: 30px;
+        padding: 20px 20px 25px;
+        background: rgba(0,0,0,0.7);
+        border-top: 1px solid var(--gold);
+        border-bottom: 1px solid var(--gold);
+        overflow-x: auto;
+        display: flex;
+        gap: 20px;
+        scroll-behavior: smooth;
+    }
 
-        /* MERCH GRID */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 30px;
-            padding: 10px 40px 40px;
-            position: relative;
-            z-index: 5;
-        }
-        .item {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            transition: 0.3s;
-        }
-        .item:hover {
-            box-shadow: 0 0 18px var(--gold);
-            transform: translateY(-5px);
-        }
-        .item-title {
-            font-size: 1.2rem;
-            color: var(--gold);
-            margin-bottom: 8px;
-        }
+    .bundle-card {
+        min-width: 320px;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid var(--gold);
+        border-radius: 12px;
+        padding: 18px 16px;
+        text-align: center;
+        transition: 0.3s;
+    }
 
-        /* BUTTON */
-        .buy-btn {
-            padding: 10px 20px;
-            background: var(--gold);
-            color: #000;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 10px;
-            transition: 0.3s;
-        }
-        .buy-btn:hover {
-            background: #f7c75d;
-            transform: scale(1.08);
-        }
+    .bundle-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 22px var(--gold);
+    }
 
-        audio { display:none; }
-    </style>
+    .bundle-title {
+        color: var(--gold);
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+    }
+
+    .bundle-note {
+        font-size: 0.9rem;
+        color: var(--white);
+        opacity: 0.9;
+    }
+
+    .buy-btn {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 18px;
+        border-radius: 30px;
+        border: 1px solid var(--gold);
+        background: rgba(0,0,0,0.5);
+        color: var(--gold);
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: 0.3s;
+        text-transform: uppercase;
+    }
+
+    .buy-btn:hover {
+        background: var(--gold);
+        color: #000;
+    }
+
+    /* SECTION HEADERS */
+    h2.section-heading {
+        color: var(--gold);
+        font-size: 2.1rem;
+        text-align: center;
+        margin: 60px 0 20px;
+        text-shadow:
+            0 0 8px rgba(255,0,0,0.8),
+            0 0 16px rgba(0,110,255,0.8);
+    }
+
+    /* MERCH GRID */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 25px;
+        padding: 0 40px;
+    }
+
+    .item {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 12px;
+        padding: 16px 14px 20px;
+        text-align: center;
+        transition: 0.3s;
+    }
+
+    .item:hover {
+        box-shadow: 0 0 18px var(--gold);
+        transform: translateY(-4px);
+    }
+
+    .item-title {
+        color: var(--gold);
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+
+    .item-note {
+        font-size: 0.86rem;
+        opacity: 0.9;
+        margin-bottom: 8px;
+    }
+
+    .footer-nav {
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    .footer-nav a {
+        color: var(--white);
+        margin: 0 15px;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        transition: 0.3s;
+    }
+
+    .footer-nav a:hover {
+        color: var(--gold);
+    }
+
+    audio { display:none; }
+</style>
 </head>
 
 <body>
 
 <div class="bg-emblem"></div>
 
-<!-- HEADER (MATCHED EXACTLY LIKE HOME) -->
+<!-- HEADER (MATCH HOME) -->
 <header class="site-header">
   <div class="logo-lockup">
     <div class="logo-mark">P&V</div>
@@ -213,10 +255,11 @@
   </nav>
 </header>
 
-<!-- MUSIC -->
+<!-- MUSIC (MATCH HOME BEHAVIOR) -->
 <audio id="themeAudio" autoplay loop>
     <source src="assets/theme.mp3" type="audio/mpeg">
 </audio>
+
 <script>
     const audio = document.getElementById("themeAudio");
     audio.volume = 1.0;
@@ -225,20 +268,248 @@
     document.addEventListener("click", startMusic, { once: true });
 </script>
 
-<!-- PAGE TITLE -->
-<div class="page-title">MERCH & COLLECTOR EDITIONS</div>
+<main>
 
-<!-- BUNDLE SCROLLER -->
-<div class="bundle-scroll">
-    <div class="bundle-card"><h3>Signed Book + Gold Foil Bookmark</h3><p>Collector Premium Edition</p><button class="buy-btn">View Bundle</button></div>
-    <div class="bundle-card"><h3>Signed Book + Character Art Print</h3><p>Xzatalia Limited Drop</p><button class="buy-btn">View Bundle</button></div>
-    <div class="bundle-card"><h3>Hoodie + Jogger Matching Fit Set</h3><p>P&V Logo Collection</p><button class="buy-btn">View Set</button></div>
-    <div class="bundle-card"><h3>Signed Book + Metal Art Card</h3><p>Panther Tribe Edition</p><button class="buy-btn">View Bundle</button></div>
-</div>
+    <div class="page-title">MERCH & COLLECTOR EDITIONS</div>
 
-<!-- HOODIES -->
-<h2>Hoodies & Sweat Sets</h2>
-<div class="grid">
-    <div class="item"><div class="item-title">P&V Gold Logo Hoodie</div><button class="buy-btn">View</button></div>
-    <div class="item"><div class="item-title">Midnight Panther Hoodie</div><button class="buy-btn">View</button></div>
-    <div class="
+    <!-- BUNDLE DEALS SCROLL (TOP BANNER) -->
+    <div class="bundle-strip">
+        <div class="bundle-card">
+            <div class="bundle-title">Signed Book + Gold Foil Bookmark</div>
+            <div class="bundle-note">Collector premium bundle for day-one readers.</div>
+            <button class="buy-btn">View Bundle</button>
+        </div>
+        <div class="bundle-card">
+            <div class="bundle-title">Signed Book + Xzatalia Art Print</div>
+            <div class="bundle-note">Limited fan drop – perfect wall piece.</div>
+            <button class="buy-btn">View Bundle</button>
+        </div>
+        <div class="bundle-card">
+            <div class="bundle-title">P&V Hoodie + Jogger Fit Set</div>
+            <div class="bundle-note">Full logo fit – hoodie & matching sweats.</div>
+            <button class="buy-btn">View Set</button>
+        </div>
+        <div class="bundle-card">
+            <div class="bundle-title">Signed Book + Metal Art Card</div>
+            <div class="bundle-note">Panther Tribe special collector edition.</div>
+            <button class="buy-btn">View Bundle</button>
+        </div>
+    </div>
+
+    <!-- HOODIES & SWEATS -->
+    <h2 class="section-heading">Hoodies & Sweat Sets</h2>
+    <div class="grid">
+        <div class="item">
+            <div class="item-title">P&V Gold Logo Hoodie</div>
+            <div class="item-note">Black hoodie with gold emblem on chest.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Midnight Panther Hoodie</div>
+            <div class="item-note">Deep black with subtle panther silhouette.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Vampire Bloodline Hoodie</div>
+            <div class="item-note">Red accent glow, P&V vampire crest.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Jogger + Hoodie Fit Set</div>
+            <div class="item-note">Matching hoodie and sweats – full P&V set.</div>
+            <button class="buy-btn">View Set</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Zip Hoodie (Black/Gold)</div>
+            <div class="item-note">Front zip hoodie with sleeve logo hits.</div>
+            <button class="buy-btn">View</button>
+        </div>
+    </div>
+
+    <!-- SHIRTS & TOPS -->
+    <h2 class="section-heading">Shirts & Tops</h2>
+    <div class="grid">
+        <div class="item">
+            <div class="item-title">P&V Classic T-Shirt</div>
+            <div class="item-note">Minimal chest logo, everyday wear.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Crop Top – Panther Blue</div>
+            <div class="item-note">Women’s fit with blue panther mark.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Tank Top – Blood Moon</div>
+            <div class="item-note">Street tank with blood moon back print.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Long Sleeve – P&V Mark</div>
+            <div class="item-note">Sleeve print with crest down the arm.</div>
+            <button class="buy-btn">View</button>
+        </div>
+    </div>
+
+    <!-- ACCESSORIES -->
+    <h2 class="section-heading">Accessories</h2>
+    <div class="grid">
+        <div class="item">
+            <div class="item-title">Phone Cases</div>
+            <div class="item-note">iPhone & Samsung – logo, fangs, or panther art.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Tote Bags</div>
+            <div class="item-note">Black canvas with P&V sigil print.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Backpacks</div>
+            <div class="item-note">All-black with subtle emblem patch.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Hats & Beanies</div>
+            <div class="item-note">Curved brim caps and knit beanies.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Keychains & Stickers</div>
+            <div class="item-note">Logo, fangs, panther silhouettes.</div>
+            <button class="buy-btn">View</button>
+        </div>
+    </div>
+
+    <!-- PRINT ITEMS -->
+    <h2 class="section-heading">Posters & Art Prints</h2>
+    <div class="grid">
+        <div class="item">
+            <div class="item-title">Posters</div>
+            <div class="item-note">P&V key art, promo posters, cover art.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Canvas Prints</div>
+            <div class="item-note">Gallery-style canvas for wall setups.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Metal Prints</div>
+            <div class="item-note">High-shine metal panels, limited runs.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Bookmarks</div>
+            <div class="item-note">Standard and foil bookmarks for the series.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Decals</div>
+            <div class="item-note">Window and laptop decals – P&V icons.</div>
+            <button class="buy-btn">View</button>
+        </div>
+    </div>
+
+    <!-- HOME & LIFESTYLE -->
+    <h2 class="section-heading">Home & Lifestyle</h2>
+    <div class="grid">
+        <div class="item">
+            <div class="item-title">Mugs</div>
+            <div class="item-note">Black mugs with inner red accent & logo.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Tumblers</div>
+            <div class="item-note">Stainless tumblers with P&V crest.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Throw Blankets</div>
+            <div class="item-note">Cozy black throws with subtle emblem.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Pillows</div>
+            <div class="item-note">Accent pillows with panther/vampire art.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Wall Tapestries</div>
+            <div class="item-note">Large fabric wall pieces for rooms/studios.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Notebooks & Journals</div>
+            <div class="item-note">P&V cover notebooks and writing journals.</div>
+            <button class="buy-btn">View</button>
+        </div>
+    </div>
+
+    <!-- COLLECTOR ITEMS -->
+    <h2 class="section-heading">Collector Items</h2>
+    <div class="grid">
+        <div class="item">
+            <div class="item-title">Character Trading Cards</div>
+            <div class="item-note">King, Xzatalia, Deja, and more.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Signed Prints</div>
+            <div class="item-note">Signed art prints from key scenes.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Gold Foil Bookmarks</div>
+            <div class="item-note">Foiled logo and blood moon designs.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Metal Art Cards</div>
+            <div class="item-note">Small metal prints of cover & characters.</div>
+            <button class="buy-btn">View</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Book Sleeves</div>
+            <div class="item-note">Padded sleeves to protect your copy.</div>
+            <button class="buy-btn">View</button>
+        </div>
+    </div>
+
+    <!-- COLLECTOR BUNDLES -->
+    <h2 class="section-heading">Collector Bundles</h2>
+    <div class="grid">
+        <div class="item">
+            <div class="item-title">Signed Book + Bookmark</div>
+            <div class="item-note">Standard signed edition with foil bookmark.</div>
+            <button class="buy-btn">View Bundle</button>
+        </div>
+        <div class="item">
+            <div class="item-title">Signed Book + Art Print</div>
+            <div class="item-note">Wall-ready print plus autographed copy.</div>
+            <button class="buy-btn">View Bundle</button>
+        </div>
+        <div class="item">
+            <div class="item-title">“Vampire Edition” Sleeve</div>
+            <div class="item-note">Special dust jacket – vampire themed.</div>
+            <button class="buy-btn">View Bundle</button>
+        </div>
+        <div class="item">
+            <div class="item-title">“Panther Edition” Metallic Sleeve</div>
+            <div class="item-note">Metallic finish panther-themed cover sleeve.</div>
+            <button class="buy-btn">View Bundle</button>
+        </div>
+    </div>
+
+    <div class="footer-nav">
+        <a href="home.html">Home</a>
+        <a href="store.html">Store</a>
+        <a href="merch.html">Merch</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+</main>
+
+</body>
+</html>
